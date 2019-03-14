@@ -21,7 +21,8 @@ if (mysqli_errno()) {
 mysqli_select_db( $connect, $database );
 $username = $_POST [ "username" ] ;
 $password = $_POST [ "pass" ] ;
-$s="SELECT pass from users where username='username'";
+$therole =  null;
+$s="SELECT pass from users where username=$username";
 $t=mysqli_query($connect,$s);
 $row=mysqli_fetch_row($t);
 $thepassword = $row[0];
@@ -35,7 +36,7 @@ if ($thepassword == ""){
 }
 
 if ($response == 'true'){
-    $q="SELECT roles from users where username='username'";
+    $q="SELECT roles from users where username=$username";
     $w=mysqli_query($connect,$q);
     $rowe=mysqli_fetch_row($w);
     $therole = $rowe[0];
@@ -47,6 +48,11 @@ if ($response == 'true'){
     }
 }
 
+if (is_null($therole)){
+    echo"Not Logged In<br>";
+    header("Refresh:0; url=http://enthalpylogistics.com/");
+    die();
+}
 
 
 mysqli_free_result($t);
