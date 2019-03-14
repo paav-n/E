@@ -50,7 +50,7 @@ if ($response == 'true'){
 
 if (is_null($therole)){
     echo"Not Logged In<br>";
-    header("Refresh:0; url=http://enthalpylogistics.com/");
+    header('Location: http://enthalpylogistics.com/');
     die();
 }
 
