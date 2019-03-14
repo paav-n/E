@@ -22,7 +22,7 @@ mysqli_select_db( $connect, $database );
 $username = $_POST [ "username" ] ;
 $password = $_POST [ "pass" ] ;
 $s="SELECT pass from users where username='username'";
-$t=mysqli_query($db,$s);
+$t=mysqli_query($connect,$s);
 $row=mysqli_fetch_row($t);
 $thepassword = $row[0];
 $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -36,7 +36,7 @@ if ($thepassword == ""){
 
 if ($response == 'true'){
     $q="SELECT roles from users where username='username'";
-    $w=mysqli_query($db,$q);
+    $w=mysqli_query($connect,$q);
     $rowe=mysqli_fetch_row($w);
     $therole = $rowe[0];
     if ($therole == "restaurant"){
