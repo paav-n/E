@@ -58,7 +58,6 @@ if (is_null($therole)){
     die();
 }
 
-
 mysqli_free_result($t);
 mysqli_free_result($w);
 mysqli_close($connect);
