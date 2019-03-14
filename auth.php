@@ -45,7 +45,8 @@ if ($response == 'true'){
     $rowe=mysqli_fetch_row($w);
     $therole = $rowe[0];
     if ($therole == "res"){
-        echo "res yes";
+        header('Location: http://enthalpylogistics.com/ContactForm/index.html');
+        die();
     }
     if ($therole == "admin"){
         echo "admin yes";
