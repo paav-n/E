@@ -26,5 +26,9 @@ $phone = $_GET['phone'];
 $address = $_GE['address'];
 $order = $_GET['order'];
 
+echo "---------";
+echo $address;
+echo "---------";
+
 $s = "INSERT INTO orders (Email,Name,Address,Details) VALUES ('$email', '$name','$address','$order')";
 mysqli_query($connect,$s);
