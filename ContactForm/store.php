@@ -20,11 +20,11 @@ if (mysqli_connect_errno()) {
 
 mysqli_select_db($connect, $database);
 
-$name = $_GET('name');
-$email = $_GET('email');
-$phone = $_GET('phone');
-$address = $_GET('address');
-$order = $_GET('order');
+$name = $_GET['name'];
+$email = $_GET['email'];
+$phone = $_GET['phone'];
+$address = $_GE['address'];
+$order = $_GET['order'];
 
 $s = "INSERT INTO orders (Email,Name,Address,Details) VALUES ('$email', '$name','$address','$order')";
 mysqli_query($connect,$s);
