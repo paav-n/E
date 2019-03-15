@@ -48,21 +48,19 @@
                     $connect = mysqli_connect($host_name, $user_name, $password, $database);
                     if (mysqli_connect_errno()) {
                         die('<p>Failed to connect to MySQL: '.mysqli_error().'</p>');
-                    } else {
-                        echo '<p>Connection to MySQL server successfully established.</p >';
                     }
                     mysqli_select_db($connect, $database);
                     $results = "SELECT * FROM orders ORDER BY OrderId DESC";
                     $w=mysqli_query($connect,$results);
-                    while($row = mysqli_fetch_array($w, MYSQL_ASSOC)) {
+                    while($row = $w->fetch_array(MYSQLI_ASSOC)) {
                         ?>
                         <tr>
-                            <td class="column1"><?php echo $row[0]?></td>
-                            <td class="column2"><?php echo $row[3]?></td>
-                            <td class="column3"><?php echo $row[5]?></td>
-                            <td class="column4"><?php echo $row[2]?></td>
-                            <td class="column5"><?php echo $row[4]?></td>
-                            <td class="column6"><?php echo $row[1]?></td>
+                            <td class="column1"><?php echo $row['Date']?></td>
+                            <td class="column2"><?php echo $row['Name']?></td>
+                            <td class="column3"><?php echo $row['Details']?></td>
+                            <td class="column4"><?php echo $row['Email']?></td>
+                            <td class="column5"><?php echo $row['Address']?></td>
+                            <td class="column6"><?php echo $row['OrderId']?></td>
                         </tr>
                         <?php
                     }
