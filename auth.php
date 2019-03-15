@@ -5,7 +5,10 @@
  * Date: 3/11/2019
  * Time: 9:53 PM
  */
+session_start();
+session_set_cookie_params(0,"/E");
 ob_start();
+$_SESSION["Logged"] = false;
 $host_name = 'db777190816.hosting-data.io';
 $database = 'db777190816';
 $user_name = 'dbo777190816';
@@ -45,10 +48,12 @@ if ($response == 'true'){
     $rowe=mysqli_fetch_row($w);
     $therole = $rowe[0];
     if ($therole == "res"){
+        $_SESSION["Logged"] = true;
         header('Location: http://enthalpylogistics.com/ContactForm/index.html');
         die();
     }
     if ($therole == "admin"){
+        $_SESSION["Logged"] = true;
         header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
         die();
     }

@@ -6,6 +6,14 @@
  * Time: 7:14 PM
  */
 ob_start();
+session_start();
+session_set_cookie_params(0,"/E");
+$status= $_SESSION["Logged"];
+if(!$status){
+    //echo"Not Logged In<br>";
+    header('Location: http://enthalpylogistics.com/');
+    die();
+}
 $host_name = 'db777190816.hosting-data.io';
 $database = 'db777190816';
 $user_name = 'dbo777190816';
