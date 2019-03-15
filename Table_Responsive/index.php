@@ -52,8 +52,9 @@
                         echo '<p>Connection to MySQL server successfully established.</p >';
                     }
                     mysqli_select_db($connect, $database);
-                    $results = mysqli_query("SELECT * FROM orders ORDER BY OrderId DESC");
-                    while($row = mysqli_fetch_array($results)) {
+                    $results = "SELECT * FROM orders ORDER BY OrderId DESC";
+                    $w=mysqli_query($connect,$results);
+                    while($row = mysqli_fetch_array($w, MYSQL_ASSOC)) {
                         ?>
                         <tr>
                             <td class="column1"><?php echo $row[0]?></td>
