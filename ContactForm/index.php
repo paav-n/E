@@ -1,3 +1,13 @@
+<?php
+session_start();
+session_set_cookie_params(0,"/E");
+$status= $_SESSION["Logged"];
+if(!$status){
+    //echo"Not Logged In<br>";
+    header('Location: http://enthalpylogistics.com/');
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
