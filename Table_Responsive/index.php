@@ -50,8 +50,8 @@
 								die(mysqli_error());
 							}
 							mysqli_select_db($connect, $database);
-							$results = mysql_query("SELECT * FROM orders ORDER BY OrderId DESC");
-							while($row = mysql_fetch_array($results)) {
+							$results = mysqli_query("SELECT * FROM orders ORDER BY OrderId DESC");
+							while($row = mysqli_fetch_array($results)) {
 							?>
 							<tr>
 								<td class="column1"><?php echo $row[0]?></td>

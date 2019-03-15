@@ -49,7 +49,7 @@ if ($response == 'true'){
         die();
     }
     if ($therole == "admin"){
-        header('Location: http://enthalpylogistics.com/Table_Responsive/index.html');
+        header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
         die();
     }
 }
