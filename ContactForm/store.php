@@ -27,4 +27,4 @@ $address = $_GET('address');
 $order = $_GET('order');
 
 $s = "INSERT INTO orders (Email,Name,Address,Details) VALUES ('$email', '$name','$address','$order')";
-mysqli_query($db,$s);
+mysqli_query($connect,$s);
