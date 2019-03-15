@@ -23,12 +23,8 @@ mysqli_select_db($connect, $database);
 $name = $_GET['name'];
 $email = $_GET['email'];
 $phone = $_GET['phone'];
-$address = $_GE['address'];
+$address = $_GET['address'];
 $order = $_GET['order'];
-
-echo "---------";
-echo $address;
-echo "---------";
 
 $s = "INSERT INTO orders (Email,Name,Address,Details) VALUES ('$email', '$name','$address','$order')";
 mysqli_query($connect,$s);
