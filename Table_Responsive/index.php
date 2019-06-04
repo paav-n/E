@@ -37,18 +37,6 @@ if(!$status){
     <div class="container-table100">
         <div class="wrap-table100">
             <div class="table100">
-                <table>
-                    <thead>
-                    <tr class="table100-head">
-                        <th class="column1">Date</th>
-                        <th class="column2">Name</th>
-                        <th class="column3">Order</th>
-                        <th class="column4">E-mail</th>
-                        <th class="column5">Address</th>
-                        <th class="column6">OrderID</th>
-                    </tr>
-                    </thead>
-                    <tbody>
                     <?php
                     $host_name = 'db777190816.hosting-data.io';
                     $database = 'db777190816';
@@ -60,28 +48,32 @@ if(!$status){
                         die('<p>Failed to connect to MySQL: '.mysqli_error().'</p>');
                     }
                     mysqli_select_db($connect, $database);
-                    $results = "SELECT * FROM orders ORDER BY OrderId DESC";
+                    $results = "SELECT * FROM orders JOIN OrderItems ON orders.OrderId=OrderItems.ORDERITEMS_ORDERID ORDER BY OrderId DESC";
                     $w=mysqli_query($connect,$results);
+                    $lastrow=-1;
                     while($row = $w->fetch_array(MYSQLI_ASSOC)) {
+                      if($row['OrderId']!=$lastrow){?>
+                      <div class="row mb-5">
+                        <div class="row p-auto col-md-2">Order:<?php echo $row['OrderId']?></div>
+                        <div class="col-md-2"><?php echo $row['Name']?></div>
+                        <div class="col-md-3"><?php echo $row['Email']?></div>
+                        <div class="col-md-3"><?php echo $row['Date']?></div>
+                        <div class="col-md-2"><?php echo $row['Address']?></div>
+                      </div>
+                        <?php
+                        $lastrow=$row[OrderId];
+                      }
                         ?>
-                        <tr>
-                            <td class="column1"><?php echo $row['Date']?></td>
-                            <td class="column2"><?php echo $row['Name']?></td>
-                            <td class="column3"><?php echo $row['Details']?></td>
-                            <td class="column4"><?php echo $row['Email']?></td>
-                            <td class="column5"><?php echo $row['Address']?></td>
-                            <td class="column6"><?php echo $row['OrderId']?></td>
-                        </tr>
+                        <div class="l-3 col-sm-4"><?php echo $row['ORDERITEMS_NAME']?></div>
+                        <div class="l-3 col-sm-4"><?php echo $row['ORDERITEMS_PRICE']?></div>
+                        <div class="l-3 col-sm-4"><?php echo $row['ORDERITEMS_QUANTITY']?></div>
                         <?php
                     }
                     ?>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
 </div>
-
 
 
 

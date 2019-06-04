@@ -49,7 +49,10 @@ if ($response == 'true'){
     $therole = $rowe[0];
     if ($therole == "res"){
         $_SESSION["Logged"] = true;
-        header('Location: http://enthalpylogistics.com/ContactForm/index.php');
+	$_SESSION['id']=array();
+	$_SESSION['name']=array();
+	$_SESSION['price']=array();
+        header('Location: http://enthalpylogistics.com/testOrderForm/items.php');
         die();
     }
     if ($therole == "admin"){
