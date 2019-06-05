@@ -117,42 +117,41 @@ if(!$status){
           <br>
           <br>
           <h2> Order Information</h2>
+          <form action="store.php" method="post">
+              <div class="form-group">
+                <label for="name" class="label">Name</label>
+                <div class="form-field-icon-wrap">
+                  <span class="icon ion-android-person"></span>
+                  <input type="text" name="name"  class="form-control" id="name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="label">Email</label>
+                <div class="form-field-icon-wrap">
+                  <span class="icon ion-email"></span>
+                  <input type="email" name="email" class="form-control" id="email">
+                </div>
+              </div>
+              <div class="form-group ">
+                <label for="phone" class="label">Phone</label>
+                <div class="form-field-icon-wrap">
+                  <span class="icon ion-android-call"></span>
+                  <input type="text" class="form-control" id="phone" name="phone">
+                </div>
+              </div>
+              <div class="form-group ">
+                <label for="street-addr" class="label">Street Address</label>
+                <div class="form-field-icon-wrap">
+                  <input type="text" class="form-control" id="street-addr" name="street-addr">
+                </div>
+              </div>
+              <div class="form-group ">
+                <label for="phone" class="label">City</label>
+                <div class="form-field-icon-wrap">
 
-              <form action="store.php">
-                  <div class="form-group">
-                    <label for="name" class="label">Name</label>
-                    <div class="form-field-icon-wrap">
-                      <span class="icon ion-android-person"></span>
-                      <input type="text" class="form-control" id="name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="email" class="label">Email</label>
-                    <div class="form-field-icon-wrap">
-                      <span class="icon ion-email"></span>
-                      <input type="email" class="form-control" id="email">
-                    </div>
-                  </div>
-                  <div class="form-group ">
-                    <label for="phone" class="label">Phone</label>
-                    <div class="form-field-icon-wrap">
-                      <span class="icon ion-android-call"></span>
-                      <input type="text" class="form-control" id="phone">
-                    </div>
-                  </div>
-                  <div class="form-group ">
-                    <label for="street-addr" class="label">Street Address</label>
-                    <div class="form-field-icon-wrap">
-                      <input type="text" class="form-control" id="street-addr">
-                    </div>
-                  </div>
-                  <div class="form-group ">
-                    <label for="phone" class="label">City</label>
-                    <div class="form-field-icon-wrap">
-
-                      <input type="text" class="form-control" id="phone">
-                    </div>
-                  </div>
+                  <input type="text" class="form-control" id="city" name="city">
+                </div>
+              </div>
                   <div class="form-group ">
                     <label for="State" class="label">State</label>
                     <div class="form-field-icon-wrap">
@@ -216,21 +215,21 @@ if(!$status){
                   <div class="form-group">
                     <label for="zipcode" class="label">Zip Code</label>
                     <div class="form-field-icon-wrap">
-                      <input type="text" class="form-control" id="zipcode">
+                      <input type="text" class="form-control" id="zipcode" name="zipcode">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="date" class="label">Date</label>
                     <div class="form-field-icon-wrap">
                       <span class="icon ion-calendar"></span>
-                      <input type="text" class="form-control" id="date">
+                      <input type="text" class="form-control" id="date" name="date">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="time" class="label">Time</label>
                     <div class="form-field-icon-wrap">
                       <span class="icon ion-android-time"></span>
-                      <input type="text" class="form-control" id="time">
+                      <input type="text" class="form-control" id="time" name="time">
                     </div>
                   </div>
                 <div class="row justify-content-center">
@@ -266,4 +265,3 @@ if(!$status){
       <script src="js/main.js"></script>
     </body>
 </html>
-
