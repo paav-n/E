@@ -118,6 +118,22 @@ if(!$status){
           <br>
           <h2> Order Information</h2>
           <form action="store.php" method="post">
+            <div class="form-group">
+                    <label for="headcount" class="label">Headcount</label>
+                    <div class="form-field-icon-wrap">
+                     <select name="headcount"  class="form-control" id="headcount">
+                      <?php
+    for ($i=1; $i<100; $i++)
+    {
+        ?>
+            <option value="<?php echo $i;?>"><?php echo $i;?></option>
+        <?php
+    }
+?>
+                     <option value="100">100+</option>
+                     </select>
+                    </div>
+                  </div>
             <input type="hidden" name="total" value='<?php echo $totalprice ?>'>
               <div class="form-group">
                 <label for="name" class="label">Name</label>

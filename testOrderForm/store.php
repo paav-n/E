@@ -24,9 +24,7 @@ if (mysqli_connect_errno()) {
 } else {
     echo '<p>Connection to MySQL server successfully established.</p >';
 }
-
 mysqli_select_db($connect, $database);
-
 $name = $_POST['name'];
 $email = $_SESSION['email'];
 $phone = $_POST['phone'];
@@ -40,7 +38,14 @@ $time=$_POST['time'];
 $combinedDT = date('Y-m-d H:i:s', strtotime("$date $time"));
 $fulladdr=$street . ", " . $city . ", " . $state .  ", " . $zipcode;
 $fullorder="";
-$s = "INSERT INTO orders (Email,Name,Address,deliverytime,Total) VALUES ('$email', '$name','$fulladdr', '$combinedDT', '$totalprice')";
+$fullorderid="";
+for($i=0;$i<count($_SESSION['id']);$i++){
+$fullorderid.=$_SESSION['id'][$i];
+if($i<count($_SESSION['id'])-1){
+        $fullorderid.= ",";
+      }
+}
+$s = "INSERT INTO orders (Email,Name,Address,deliverytime,Headcount,FullOrder, Total) VALUES ('$email', '$name','$fulladdr', '$combinedDT', '$headcount','$fullorderid' '$totalprice')";
 mysqli_query($connect,$s);
 $entersql="";
 $last_id = mysqli_insert_id($connect);
