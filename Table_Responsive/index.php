@@ -60,13 +60,15 @@ if(!$status){
                         <div class="col-md-3"><?php echo $row['Date']?></div>
                         <div class="col-md-2"><?php echo $row['Address']?></div>
                       </div>
+                      <div class="row ml-5">
+                      Total:<?php echo $row['Total']?>
+                      </div>
                         <?php
                         $lastrow=$row[OrderId];
                       }
                         ?>
                         <div class="l-3 col-sm-4"><?php echo $row['ORDERITEMS_NAME']?></div>
                         <div class="l-3 col-sm-4"><?php echo $row['ORDERITEMS_PRICE']?></div>
-                        <div class="l-3 col-sm-4"><?php echo $row['ORDERITEMS_QUANTITY']?></div>
                         <?php
                     }
                     ?>

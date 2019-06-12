@@ -126,7 +126,14 @@ if(!$status){
                             <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
                             <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
                             <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
-                        <div class="col-sm-2"><button type="button" class="btn" data-id="<?php echo $row['ITEM_ID']?>" data-price="<?php echo $row['ITEM_PRICE']?>">Add</button></div>
+                            <div class="col-sm-2">
+        <form action="additem.php" method="post">
+          <input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+          <input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+          <input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+          <input type="submit" class="btn" value="add">
+        </form>
+                            </div>
                         </div>
 
                         <?php
@@ -145,8 +152,14 @@ if(!$status){
                             <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
                             <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
                             <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
-                            <div class="col-sm-2"><button type="button" class="btn" data-id="<?php echo $row['ITEM_ID']?>" data-price="<?php echo $row['ITEM_PRICE']?>">Add</button></div>
-                        </div>
+                            <div class="col-sm-2">
+        <form action="additem.php" method="post">
+          <input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+          <input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+          <input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+          <input type="submit" class="btn" value="add">
+        </form>
+                            </div>
 
                         <?php
                     } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==3);
@@ -164,7 +177,14 @@ if(!$status){
                             <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
                             <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
                             <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
-                            <div class="col-sm-2"><button type="button" class="btn" data-id="<?php echo $row['ITEM_ID']?>" data-price="<?php echo $row['ITEM_PRICE']?>">Add</button></div> 
+                            <div class="col-sm-2">
+				<form action="additem.php" method="post">
+					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+					<input type="submit" class="btn" value="add">
+				</form>
+                            </div>
                         </div>
                         <?php
                     } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==4);}
@@ -181,7 +201,14 @@ if(!$status){
                             <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
                             <div class="col-sm-6"><?php echo $row['ITEM_DESCRIPTION']?></div>
                             <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
-                            <div class="col-sm-2"><button type="button" class="btn" data-id="<?php echo $row['ITEM_ID']?>" data-price="<?php echo $row['ITEM_PRICE']?>">Add</button></div> 
+                            <div class="col-sm-2">
+				<form action="additem.php" method="post">
+					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+					<input type="submit" class="btn" value="add">
+				</form>
+                            </div>
                        </div>
                         <?php
                     } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==5);
@@ -198,7 +225,14 @@ if(!$status){
                             <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
                             <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
                             <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
-                            <div class="col-sm-2"><button type="button" class="btn" data-id="<?php echo $row['ITEM_ID']?>" data-price="<?php echo $row['ITEM_PRICE']?>">Add</button></div>
+                            <div class="col-sm-2">
+				<form action="additem.php" method="post">
+					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+					<input type="submit" class="btn" value="add">
+				</form>
+                            </div>
                         </div>
                         <?php
                     } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==6);}?>

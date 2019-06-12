@@ -118,6 +118,7 @@ if(!$status){
           <br>
           <h2> Order Information</h2>
           <form action="store.php" method="post">
+            <input type="hidden" name="total" value='<?php echo $totalprice ?>'>
               <div class="form-group">
                 <label for="name" class="label">Name</label>
                 <div class="form-field-icon-wrap">

@@ -43,12 +43,13 @@ if ($thePassword == ""){
 }
 //echo $response;
 if ($response == 'true'){
-    $q="SELECT roles from users where username='$user'";
+    $q="SELECT roles,email from users where username='$user'";
     $w=mysqli_query($connect,$q);
     $rowe=mysqli_fetch_row($w);
     $therole = $rowe[0];
     if ($therole == "res"){
         $_SESSION["Logged"] = true;
+        $_SESSION['email']=$rowe[1];
 	$_SESSION['id']=array();
 	$_SESSION['name']=array();
 	$_SESSION['price']=array();

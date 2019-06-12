@@ -28,26 +28,33 @@ if (mysqli_connect_errno()) {
 mysqli_select_db($connect, $database);
 
 $name = $_POST['name'];
-$email = $_POST['email'];
+$email = $_SESSION['email'];
 $phone = $_POST['phone'];
 $street = $_POST['street-addr'];
 $city = $_POST['city'];
 $state=$_POST['State'];
  $zipcode=$_POST['zipcode'];
-
+$totalprice=$_POST['total'];
+$date=$_POST['date'];
+$time=$_POST['time'];
+$combinedDT = date('Y-m-d H:i:s', strtotime("$date $time"));
 $fulladdr=$street . ", " . $city . ", " . $state .  ", " . $zipcode;
 $fullorder="";
-$totalprice;
+$s = "INSERT INTO orders (Email,Name,Address,deliverytime,Total) VALUES ('$email', '$name','$fulladdr', '$combinedDT', '$totalprice')";
+mysqli_query($connect,$s);
+$entersql="";
+$last_id = mysqli_insert_id($connect);
 for($i=0;$i<count($_SESSION['id']);$i++){
-      $totalprice+=$_SESSION['price'][$i];
-      $fullorder.=$_SESSION[name][$i];
-      if($i<count($_SESSION['id'])-1){
+      $fullorder.=$_SESSION['name'][$i];
+      $nameofitem=$_SESSION['name'][$i];
+      $priceofitem=$_SESSION['price'][$i];
+      $idofitem=$_SESSION['id'][$i];
+      $entersql.= "INSERT INTO OrderItems (ORDERITEMS_ORDERID, ORDERITEMS_ID, ORDERITEMS_NAME, ORDERITEMS_PRICE) VALUES ('$last_id', '$idofitem', '$nameofitem', '$priceofitem');";
+        if($i<count($_SESSION['id'])-1){
         $fullorder.= ", ";
       }
 }
-
-$s = "INSERT INTO orders (Email,Name,Address,Details) VALUES ('$email', '$name','$fulladdr','$fullorder')";
-mysqli_query($connect,$s);
+mysqli_multi_query ( $connect , $entersql);
 //$to = "paavan@enthalpylogistics.com";
 $subject = "Order Confirmation test";
 
