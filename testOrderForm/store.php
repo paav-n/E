@@ -45,7 +45,7 @@ if($i<count($_SESSION['id'])-1){
         $fullorderid.= ",";
       }
 }
-$s = "INSERT INTO orders (Email,Name,Address,deliverytime,Headcount,FullOrder, Total) VALUES ('$email', '$name','$fulladdr', '$combinedDT', '$headcount','$fullorderid' '$totalprice')";
+$s = "INSERT INTO orders (Email,Name,Address,deliverytime,Headcount,FullOrder, Total) VALUES ('$email', '$name','$fulladdr', '$combinedDT', '$headcount','$fullorderid', '$totalprice')";
 mysqli_query($connect,$s);
 $entersql="";
 $last_id = mysqli_insert_id($connect);
