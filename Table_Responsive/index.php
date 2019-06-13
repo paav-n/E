@@ -48,23 +48,56 @@ if(!$status){
                         die('<p>Failed to connect to MySQL: '.mysqli_error().'</p>');
                     }
                     mysqli_select_db($connect, $database);
-                    $results = "SELECT * FROM orders JOIN OrderItems ON orders.OrderId=OrderItems.ORDERITEMS_ORDERID ORDER BY OrderId DESC";
+                    $results = "SELECT * FROM orders ORDER BY OrderId DESC";
                     $w=mysqli_query($connect,$results);
                     $lastrow=-1;
                     while($row = $w->fetch_array(MYSQLI_ASSOC)) {
-                      if($row['OrderId']!=$lastrow){?>
+                      if($row['OrderId']){?>
                       <div class="row mb-5">
-                        <div class="row p-auto col-md-2">Order:<?php echo $row['OrderId']?></div>
-                        <div class="col-md-2"><?php echo $row['Name']?></div>
-                        <div class="col-md-3"><?php echo $row['Email']?></div>
-                        <div class="col-md-3"><?php echo $row['Date']?></div>
-                        <div class="col-md-2"><?php echo $row['Address']?></div>
+                        <table>
+                          <tr>
+                            <th class="column1">OrderID</th>
+                            <th class="column2">Date Ordered</th>
+                            <th class="column3">Name</th>
+                            <th class="column4">Email</th>
+                            <th class="column5">Address</th>
+                            <th class="column6">Headcount</th>
+                            <th class="column7">Delivery Time</th>
+                            <th class="column8">Total</th>
+                          </tr>
+                          <tr>
+                            <td class="column1"><?php echo $row['OrderId']?></td>
+                            <td class="column2"><?php echo $row['Date']?></td>
+                            <td class="column3"><?php echo $row['Name']?></td>
+                            <td class="column4"><?php echo $row['Email']?></td>
+                            <td class="column5"><?php echo $row['Address']?></td>
+                            <td class="column6"><?php echo $row['Headcount']</td>
+                            <td class="column7"><?php echo $row['deliverytime']</td>
+                            <td class="column8"><?php echo $row['Total']?></td>
+                          </tr>
+                      </table>
+                      <table>
+                      <tr>
+                        <th class="column2">Name</th>
+                        <th class="column3">Price</th>
+                      </tr>
+                      <?php
+                      $items = explode(",", $row['FullOrder']);
+                      foreach ($items as $itemID) {
+                        $itemsql = "SELECT * FROM item WHERE ITEM_ID='$itemID';";
+                        $x=mysqli_query($connect,$itemsql);
+                        $itemrow = $x->fetch_array(MYSQLI_ASSOC)
+                        <tr>
+                        <td class="column1"><?php echo $itemrow['ITEM_NAME']?></td>
+                        <td class="column2"><?php echo $itemrow['ITEM_PRICE']?></td>
+                        </tr>
+                      }
+                      ?>
+                      </table>
+
                       </div>
-                      <div class="row ml-5">
-                      Total:<?php echo $row['Total']?>
-                      </div>
+
                         <?php
-                        $lastrow=$row[OrderId];
                       }
                         ?>
                         <div class="l-3 col-sm-4"><?php echo $row['ORDERITEMS_NAME']?></div>
