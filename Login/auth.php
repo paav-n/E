@@ -50,6 +50,7 @@ if ($response == 'true'){
     if ($therole == "res"){
         $_SESSION["Logged"] = true;
         $_SESSION['email']=$rowe[1];
+        $_SESSION["Role"] = "res";
 	$_SESSION['id']=array();
 	$_SESSION['name']=array();
 	$_SESSION['price']=array();
@@ -57,6 +58,7 @@ if ($response == 'true'){
         die();
     }
     if ($therole == "admin"){
+        $_SESSION["Role"] = "admin";
         $_SESSION["Logged"] = true;
         header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
         die();

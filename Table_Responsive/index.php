@@ -49,9 +49,9 @@ if(!$status){
                     }
                     mysqli_select_db($connect, $database);
                     $results = "SELECT * FROM orders ORDER BY OrderId DESC";
-                    $w=mysqli_query($connect,$results
+                    $w=mysqli_query($connect,$results);
                     while($row = $w->fetch_array(MYSQLI_ASSOC)) {
-                      if($row['OrderId']){?>
+                      ?>
                       <div class="row mb-5">
                         <table>
                           <tr>
@@ -94,14 +94,7 @@ if(!$status){
                       }
                       ?>
                       </table>
-
                       </div>
-
-                        <?php
-                      }
-                        ?>
-                        <div class="l-3 col-sm-4"><?php echo $row['ORDERITEMS_NAME']?></div>
-                        <div class="l-3 col-sm-4"><?php echo $row['ORDERITEMS_PRICE']?></div>
                         <?php
                     }
                     ?>

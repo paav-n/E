@@ -60,6 +60,7 @@ if(!$status){
   <header class='site-header'>
   <div class='btn-toolbar pull-right'>
     <div class='btn-group'>
+      <a class="btn btn-primary mr-4" href="/testOrderForm/currentorders.php">Orders</a>
       <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modalCart">Items</button>
     </div>
   </div>
@@ -160,7 +161,7 @@ if(!$status){
           <input type="submit" class="btn" value="add">
         </form>
                             </div>
-
+                          </div>
                         <?php
                     } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==3);
                     ?>
@@ -284,6 +285,17 @@ if(!$status){
               <div class="col-sm-4"><strong><?php echo $totalprice ?></strong></div>
               <div class="col-sm-4"></div>
             </div>
+            <?php $tax=$totalprice*0.06625; $taxedtotal=$totalprice+$tax; ?>
+            <div class="row p-3">
+              <div class="col-sm-4"><strong>Tax</strong></div>
+              <div class="col-sm-3"><strong><?php echo $tax ?></strong></div>
+              <div class="col-sm-3"></div>
+            </div>
+            <div class="row p-3">
+              <div class="col-sm-4"><strong>Total</strong></div>
+              <div class="col-sm-3"><strong><?php echo $taxedtotal ?></strong></div>
+              <div class="col-sm-3"></div>
+            </div>
         </div>
 	<?php } ?>
       </div>
@@ -321,8 +333,6 @@ $('add-item').on('click',function(){
 
 <script src="js/aos.js"></script>
 
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 
 <script src="js/main.js"></script>
 </body>

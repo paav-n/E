@@ -104,8 +104,19 @@ if(!$status){
             </div>
         <?php } ?>
             <div class="row p-3">
-              <div class="col-sm-4"><strong>Total</strong></div>
+              <div class="col-sm-4"><strong>SubTotal</strong></div>
               <div class="col-sm-3"><strong><?php echo $totalprice ?></strong></div>
+              <div class="col-sm-3"></div>
+            </div>
+            <?php $tax=$totalprice*0.06625; $taxedtotal=$totalprice+$tax; ?>
+            <div class="row p-3">
+              <div class="col-sm-4"><strong>Tax</strong></div>
+              <div class="col-sm-3"><strong><?php echo $tax ?></strong></div>
+              <div class="col-sm-3"></div>
+            </div>
+            <div class="row p-3">
+              <div class="col-sm-4"><strong>Total</strong></div>
+              <div class="col-sm-3"><strong><?php echo $taxedtotal ?></strong></div>
               <div class="col-sm-3"></div>
             </div>
         </div>
@@ -119,7 +130,7 @@ if(!$status){
           <h2> Order Information</h2>
           <form action="store.php" method="post">
             <div class="form-group">
-              <input type="hidden" name="total" value='<?php echo $totalprice ?>'>
+              <input type="hidden" name="total" value='<?php echo $taxedtotal ?>'>
               <label for="headcount" class="label">Headcount</label>
                 <div class="form-field-icon-wrap">
                   <select name="headcount"  class="form-control" id="headcount">
