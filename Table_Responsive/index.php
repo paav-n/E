@@ -49,8 +49,7 @@ if(!$status){
                     }
                     mysqli_select_db($connect, $database);
                     $results = "SELECT * FROM orders ORDER BY OrderId DESC";
-                    $w=mysqli_query($connect,$results);
-                    $lastrow=-1;
+                    $w=mysqli_query($connect,$results
                     while($row = $w->fetch_array(MYSQLI_ASSOC)) {
                       if($row['OrderId']){?>
                       <div class="row mb-5">
@@ -71,8 +70,8 @@ if(!$status){
                             <td class="column3"><?php echo $row['Name']?></td>
                             <td class="column4"><?php echo $row['Email']?></td>
                             <td class="column5"><?php echo $row['Address']?></td>
-                            <td class="column6"><?php echo $row['Headcount']</td>
-                            <td class="column7"><?php echo $row['deliverytime']</td>
+                            <td class="column6"><?php echo $row['Headcount']?></td>
+                            <td class="column7"><?php echo $row['deliverytime']?></td>
                             <td class="column8"><?php echo $row['Total']?></td>
                           </tr>
                       </table>
@@ -86,11 +85,12 @@ if(!$status){
                       foreach ($items as $itemID) {
                         $itemsql = "SELECT * FROM item WHERE ITEM_ID='$itemID';";
                         $x=mysqli_query($connect,$itemsql);
-                        $itemrow = $x->fetch_array(MYSQLI_ASSOC)
+                        $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
                         <tr>
                         <td class="column1"><?php echo $itemrow['ITEM_NAME']?></td>
                         <td class="column2"><?php echo $itemrow['ITEM_PRICE']?></td>
                         </tr>
+                        <?php
                       }
                       ?>
                       </table>

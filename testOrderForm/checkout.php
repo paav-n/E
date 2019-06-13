@@ -126,7 +126,7 @@ if(!$status){
                 <?php
                   for ($i=1; $i<100; $i++){?>
                     <option value="<?php echo $i;?>"><?php echo $i;?></option>
-                <?php}?>
+                <?php } ?>
                     <option value="100">100+</option>
                   </select>
                 </div>
