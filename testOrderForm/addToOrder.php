@@ -84,7 +84,7 @@ if(!$status){
     </div>
   </div>
   <div class="col-2 col-md-6 text-center site-logo-wrap">
-    <a href="items.php" class="site-logo">Enthalpy</a>
+    <a href="addToOrder.php" class="site-logo">Enthalpy</a>
   </div>
 </div>
 </header>

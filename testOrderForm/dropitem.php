@@ -22,7 +22,6 @@ $_SESSION['id']=$idremoval;
 $_SESSION['name']=$nameremoval;
 $_SESSION['price']=$priceremoval;
 }
- header('Location: http://enthalpylogistics.com/testOrderForm/items.php');
+ header('Location: http://enthalpylogistics.com/testOrderForm/index.php');
     die();
 ?>
-

@@ -53,7 +53,7 @@ if(!$status){
       }
       mysqli_select_db($connect, $database);
       $email=$_SESSION['email'];
-      $results = "SELECT * FROM orders WHERE Email=$email ORDER BY ASC";
+      $results = "SELECT * FROM orders WHERE Email='{$email}';";
       $w=mysqli_query($connect,$results);
     ?>
 
@@ -81,8 +81,6 @@ if(!$status){
             <td class="column7"><?php echo $row['deliverytime']?></td>
             <td class="column8"><?php echo $row['Total']?></td>
           </tr>
-      </table>
-      <table>
       <tr>
         <th class="column2">Name</th>
         <th class="column3">Price</th>
@@ -90,7 +88,7 @@ if(!$status){
       <?php
       $items = explode(",", $row['FullOrder']);
       foreach ($items as $itemID) {
-        $itemsql = "SELECT * FROM item WHERE ITEM_ID='$itemID';";
+        $itemsql = "SELECT * FROM Item WHERE ITEM_ID= '{$itemID}';";
         $x=mysqli_query($connect,$itemsql);
         $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
         <tr>

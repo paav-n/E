@@ -108,7 +108,7 @@ if(!$status){
               <div class="col-sm-3"><strong><?php echo $totalprice ?></strong></div>
               <div class="col-sm-3"></div>
             </div>
-            <?php $tax=$totalprice*0.06625; $taxedtotal=$totalprice+$tax; ?>
+            <?php $tax=round($totalprice*0.06625,2); $taxedtotal=$totalprice+$tax; ?>
             <div class="row p-3">
               <div class="col-sm-4"><strong>Tax</strong></div>
               <div class="col-sm-3"><strong><?php echo $tax ?></strong></div>

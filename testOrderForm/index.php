@@ -71,7 +71,7 @@ if(!$status){
     </div>
   </div>
   <div class="col-2 col-md-6 text-center site-logo-wrap">
-    <a href="items.php" class="site-logo">Enthalpy</a>
+    <a href="index.php" class="site-logo">Enthalpy</a>
   </div>
 </div>
 </header>
@@ -281,20 +281,20 @@ if(!$status){
             </div>
 	<?php } ?>
             <div class="row p-3">
-              <div class="col-sm-6"><strong>Total</strong></div>
+              <div class="col-sm-6"><strong>Subotal</strong></div>
               <div class="col-sm-4"><strong><?php echo $totalprice ?></strong></div>
               <div class="col-sm-4"></div>
             </div>
-            <?php $tax=$totalprice*0.06625; $taxedtotal=$totalprice+$tax; ?>
+            <?php $tax=round($totalprice*0.06625,2); $taxedtotal=$totalprice+$tax; ?>
             <div class="row p-3">
-              <div class="col-sm-4"><strong>Tax</strong></div>
-              <div class="col-sm-3"><strong><?php echo $tax ?></strong></div>
-              <div class="col-sm-3"></div>
+              <div class="col-sm-6"><strong>Tax</strong></div>
+              <div class="col-sm-4"><strong><?php echo $tax ?></strong></div>
+              <div class="col-sm-4"></div>
             </div>
             <div class="row p-3">
-              <div class="col-sm-4"><strong>Total</strong></div>
-              <div class="col-sm-3"><strong><?php echo $taxedtotal ?></strong></div>
-              <div class="col-sm-3"></div>
+              <div class="col-sm-6"><strong>Total</strong></div>
+              <div class="col-sm-4"><strong><?php echo $taxedtotal ?></strong></div>
+              <div class="col-sm-4"></div>
             </div>
         </div>
 	<?php } ?>

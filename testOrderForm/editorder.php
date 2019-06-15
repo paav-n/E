@@ -54,8 +54,9 @@ if(!$status){
       mysqli_select_db($connect, $database);
       $email=$_SESSION['email'];
       $ordernum=$_POST['order'];
-      $results = "SELECT * FROM orders WHERE OrderId=$ordernum;";
+      $results = "SELECT * FROM orders WHERE OrderId='{$ordernum}';";
       $w=mysqli_query($connect,$results);
+
     ?>
 
     <h1>Orders</h1>
@@ -91,7 +92,7 @@ if(!$status){
       <?php
       $items = explode(",", $row['FullOrder']);
       foreach ($items as $itemID) {
-        $itemsql = "SELECT * FROM item WHERE ITEM_ID='$itemID';";
+        $itemsql = "SELECT * FROM Item WHERE ITEM_ID='{$itemID}';";
         $x=mysqli_query($connect,$itemsql);
         $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
         <tr>
