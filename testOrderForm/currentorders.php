@@ -99,7 +99,7 @@ if(!$status){
      }
      ?>
      <div class="row ml-3">
-     <form action="editcheckout.php" method="post">
+     <form action="editorder.php" method="post">
      <input type="hidden" name="order" value=<?php echo $row['OrderId']?>>
      <input type="submit" class="btn" value="edit order">
      </form>

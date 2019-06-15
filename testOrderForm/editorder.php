@@ -66,58 +66,201 @@ if(!$status){
       while($row = $w->fetch_array(MYSQLI_ASSOC)) {
 
         ?>
-        <table>
-          <tr>
-            <th class="column1">OrderID</th>
-            <th class="column2">Date Ordered</th>
-            <th class="column3">Address</th>
-            <th class="column4">Headcount</th>
-            <th class="column5">Delivery Time</th>
-            <th class="column6">Total</th>
-          </tr>
-          <tr>
-            <td class="column1"><?php echo $row['OrderId']?></td>
-            <td class="column2"><?php echo $row['Date']?></td>
-            <td class="column5"><?php echo $row['Address']?></td>
-            <td class="column6"><?php echo $row['Headcount']?></td>
-            <td class="column7"><?php echo $row['deliverytime']?></td>
-            <td class="column8"><?php echo $row['Total']?></td>
-          </tr>
-      </table>
-      <table>
-      <tr>
-        <th class="column2">Name</th>
-        <th class="column3">Price</th>
-      </tr>
-      <?php
-      $items = explode(",", $row['FullOrder']);
-      foreach ($items as $itemID) {
-        $itemsql = "SELECT * FROM Item WHERE ITEM_ID='{$itemID}';";
-        $x=mysqli_query($connect,$itemsql);
-        $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
-        <tr>
-        <td class="column1"><?php echo $itemrow['ITEM_NAME']?></td>
-        <td class="column2"><?php echo $itemrow['ITEM_PRICE']?></td>
-        </tr>
-        <?php
-      }
-      ?>
-      </table>
+        <div class="section bg-light">
+       <div class="row ml-3">
+           <div class="col-md-2"><strong>OrderID</strong></div>
+           <div class="col-md-2"><strong>Date Ordered</strong></div>
+           <div class="col-md-2"><strong>Address</strong></div>
+           <div class="col-md-2"><strong>Headcount</strong></div>
+           <div class="col-md-2"><strong>Delivery Time</strong></div>
+           <div class="col-md-2"><strong>Total</strong></div>
+       </div>
+         <div class="row ml-3">
+           <div class="col-md-2"><?php echo $row['OrderId']?></div>
+           <div class="col-md-2"><?php echo $row['Date']?></div>
+           <div class="col-md-2"><?php echo $row['Address']?></div>
+           <div class="col-md-2"><?php echo $row['Headcount']?></div>
+           <div class="col-md-2"><?php echo $row['deliverytime']?></div>
+           <div class="col-md-2"><?php echo $row['Total']?></div>
+         </div>
+         <div class="split-right col-md-6 justify-content-center">
+           <h2> Order Information</h2>
+           <form action="store.php" method="post">
+             <div class="form-group">
+               <input type="hidden" name="total" value='<?php echo $taxedtotal ?>'>
+               <label for="headcount" class="label">Headcount</label>
+                 <div class="form-field-icon-wrap">
+                   <select name="headcount"  class="form-control" id="headcount">
+                 <?php
+                   for ($i=1; $i<100; $i++){?>
+                     <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                 <?php } ?>
+                     <option value="100">100+</option>
+                   </select>
+                 </div>
+             </div>
+               <div class="form-group">
+                 <label for="name" class="label">Name</label>
+                 <div class="form-field-icon-wrap">
+                   <span class="icon ion-android-person"></span>
+                   <input type="text" name="name"  class="form-control" id="name">
+                 </div>
+               </div>
+               <div class="form-group">
+                 <label for="email" class="label">Email</label>
+                 <div class="form-field-icon-wrap">
+                   <span class="icon ion-email"></span>
+                   <input type="email" name="email" class="form-control" id="email">
+                 </div>
+               </div>
+               <div class="form-group ">
+                 <label for="phone" class="label">Phone</label>
+                 <div class="form-field-icon-wrap">
+                   <span class="icon ion-android-call"></span>
+                   <input type="text" class="form-control" id="phone" name="phone">
+                 </div>
+               </div>
+               <div class="form-group ">
+                 <label for="street-addr" class="label">Street Address</label>
+                 <div class="form-field-icon-wrap">
+                   <input type="text" class="form-control" id="street-addr" name="street-addr">
+                 </div>
+               </div>
+               <div class="form-group ">
+                 <label for="phone" class="label">City</label>
+                 <div class="form-field-icon-wrap">
+
+                   <input type="text" class="form-control" id="city" name="city">
+                 </div>
+               </div>
+                   <div class="form-group ">
+                     <label for="State" class="label">State</label>
+                     <div class="form-field-icon-wrap">
+                       <span class="icon ion-android-arrow-dropdown"></span>
+                       <select name="State" id="state" class="form-control">
+                          <option disabled selected value> -- select an option -- </option>
+                         <option value="AL">Alabama</option>
+                         <option value="AK">Alaska</option>
+                         <option value="AZ">Arizona</option>
+                         <option value="AR">Arkansas</option>
+                         <option value="CA">California</option>
+                         <option value="CO">Colorado</option>
+                         <option value="CT">Connecticut</option>
+                         <option value="DE">Delaware</option>
+                         <option value="DC">District Of Columbia</option>
+                         <option value="FL">Florida</option>
+                         <option value="GA">Georgia</option>
+                         <option value="HI">Hawaii</option>
+                         <option value="ID">Idaho</option>
+                         <option value="IL">Illinois</option>
+                         <option value="IN">Indiana</option>
+                         <option value="IA">Iowa</option>
+                         <option value="KS">Kansas</option>
+                         <option value="KY">Kentucky</option>
+                         <option value="LA">Louisiana</option>
+                         <option value="ME">Maine</option>
+                         <option value="MD">Maryland</option>
+                         <option value="MA">Massachusetts</option>
+                         <option value="MI">Michigan</option>
+                         <option value="MN">Minnesota</option>
+                         <option value="MS">Mississippi</option>
+                         <option value="MO">Missouri</option>
+                         <option value="MT">Montana</option>
+                         <option value="NE">Nebraska</option>
+                         <option value="NV">Nevada</option>
+                         <option value="NH">New Hampshire</option>
+                         <option value="NJ">New Jersey</option>
+                         <option value="NM">New Mexico</option>
+                         <option value="NY">New York</option>
+                         <option value="NC">North Carolina</option>
+                         <option value="ND">North Dakota</option>
+                         <option value="OH">Ohio</option>
+                         <option value="OK">Oklahoma</option>
+                         <option value="OR">Oregon</option>
+                         <option value="PA">Pennsylvania</option>
+                         <option value="RI">Rhode Island</option>
+                         <option value="SC">South Carolina</option>
+                         <option value="SD">South Dakota</option>
+                         <option value="TN">Tennessee</option>
+                         <option value="TX">Texas</option>
+                         <option value="UT">Utah</option>
+                         <option value="VT">Vermont</option>
+                         <option value="VA">Virginia</option>
+                         <option value="WA">Washington</option>
+                         <option value="WV">West Virginia</option>
+                         <option value="WI">Wisconsin</option>
+                         <option value="WY">Wyoming</option>
+                       </select>
+                     </div>
+                   </div>
+                   <div class="form-group">
+                     <label for="zipcode" class="label">Zip Code</label>
+                     <div class="form-field-icon-wrap">
+                       <input type="text" class="form-control" id="zipcode" name="zipcode">
+                     </div>
+                   </div>
+                   <div class="form-group">
+                     <label for="date" class="label">Date</label>
+                     <div class="form-field-icon-wrap">
+                       <span class="icon ion-calendar"></span>
+                       <input type="text" class="form-control" id="date" name="date">
+                     </div>
+                   </div>
+                   <div class="form-group">
+                     <label for="time" class="label">Time</label>
+                     <div class="form-field-icon-wrap">
+                       <span class="icon ion-android-time"></span>
+                       <input type="text" class="form-control" id="time" name="time">
+                     </div>
+                   </div>
+                 <div class="row justify-content-center">
+                   <div class="col-md-auto">
+                     <input type="submit" class="btn btn-primary btn-outline-primary btn-block" value="Order">
+                   </div>
+                 </div>
+               </form>
+             </div>
+     <div class="row ml-5">
+       <div class="col-md-2"><strong>Name</strong></div>
+       <div class="col-md-2"><strong>Price</strong></div>
+     </div>
+     <?php
+     $items = explode(",", $row['FullOrder']);
+     foreach ($items as $itemID) {
+       $itemsql = "SELECT * FROM Item WHERE ITEM_ID= '{$itemID}';";
+       $x=mysqli_query($connect,$itemsql);
+       $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
+       <div class="row ml-5">
+       <div class="col-md-4"><?php echo $itemrow['ITEM_NAME']?></div>
+       <div class="col-md-4"><?php echo $itemrow['ITEM_PRICE']?></div>
+       </div>
+       <?php
+     }
+     ?>
+     <div class="row ml-3">
+     <form action="editorder.php" method="post">
+     <input type="hidden" name="order" value=<?php echo $row['OrderId']?>>
+     <input type="submit" class="btn" value="edit order">
+     </form>
+     </div>
+     </div>
       <?php } ?>
       <h1>Add an item</h1>
       <h2 class="ml-3">Breakfast for the Bunch</h2>
       <?php
-                          while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==1) {
+      $sql = "SELECT * FROM Item ORDER BY ITEM_SECTION";
+      $z=mysqli_query($connect,$sql);
+                          while(($irow = $z->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==1) {
                               ?>
                               <div class="row ml-3 mb-5">
-                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
-                                  <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
-                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-3"><b><?php echo $irow['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
       				<form action="additem.php" method="post">
-      					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
-      					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
-      					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+      					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
+      					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
+      					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
       					<input type="submit" class="btn" value="add">
       				</form>
                                   </div>
@@ -126,126 +269,126 @@ if(!$status){
                           }
                           ?>
       </div>
-      <?php if($row['ITEM_SECTION']==2){?>
+      <?php if($irow['ITEM_SECTION']==2){?>
       <div class="limiter" id="lunch-for-the-bunch">
       <h2 class="ml-3">Lunch for the Bunch</h2>
       <?php
                           do{
                               ?>
                               <div class="row ml-3 mb-5">
-                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
-                                  <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
-                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-3"><b><?php echo $irow['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
               <form action="additem.php" method="post">
-                <input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
-                <input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
-                <input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+                <input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
+                <input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
+                <input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
                 <input type="submit" class="btn" value="add">
               </form>
                                   </div>
                               </div>
 
                               <?php
-                          } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==2);
+                          } while(($irow = $w->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==2);
                           ?>
       <?php }?>
       </div>
 
-      <?php if($row['ITEM_SECTION']==3){?>
+      <?php if($irow['ITEM_SECTION']==3){?>
       <div class="limiter" id="value-paks">
       <h2 class="ml-3">Value Paks</h2>
       <?php
                           do{
                               ?>
                               <div class="row ml-3 mb-5">
-                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
-                                  <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
-                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-3"><b><?php echo $irow['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
               <form action="additem.php" method="post">
-                <input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
-                <input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
-                <input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+                <input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
+                <input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
+                <input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
                 <input type="submit" class="btn" value="add">
               </form>
                                   </div>
                                 </div>
                               <?php
-                          } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==3);
+                          } while(($irow = $w->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==3);
                           ?>
       <?php }?>
       </div>
 
-      <?php if($row['ITEM_SECTION']==4){?>
+      <?php if($irow['ITEM_SECTION']==4){?>
       <div class="limiter" id="lunch-for-one">
       <h2 class="ml-3">Lunch for One</h2>
       <?php
                           do{
                               ?>
                               <div class="row ml-3 mb-5">
-                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
-                                  <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
-                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-3"><b><?php echo $irow['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
       				<form action="additem.php" method="post">
-      					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
-      					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
-      					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+      					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
+      					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
+      					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
       					<input type="submit" class="btn" value="add">
       				</form>
                                   </div>
                               </div>
                               <?php
-                          } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==4);}
+                          } while(($irow = $w->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==4);}
                           ?>
       </div>
 
-      <?php if($row['ITEM_SECTION']==5){?>
+      <?php if($irow['ITEM_SECTION']==5){?>
       <div class="limiter" id="salads-for-one">
       <h2 class="ml-3">Box'd Salads for One</h2>
       <?php
                           do{
                               ?>
                               <div class="row ml-3 mb-5">
-                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
-                                  <div class="col-sm-6"><?php echo $row['ITEM_DESCRIPTION']?></div>
-                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-3"><b><?php echo $irow['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-6"><?php echo $irow['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
       				<form action="additem.php" method="post">
-      					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
-      					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
-      					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+      					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
+      					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
+      					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
       					<input type="submit" class="btn" value="add">
       				</form>
                                   </div>
                              </div>
                               <?php
-                          } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==5);
+                          } while(($irow = $w->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==5);
                           }?>
       </div>
 
-      <?php if($row['ITEM_SECTION']==6){?>
+      <?php if($irow['ITEM_SECTION']==6){?>
       <div class="limiter" id="beverages">
       <h2 class="ml-3">Beverages</h2>
       <?php
                           do{
                               ?>
                               <div class="row ml-3 mb-5">
-                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
-                                  <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
-                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-3"><b><?php echo $irow['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
       				<form action="additem.php" method="post">
-      					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
-      					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
-      					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+      					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
+      					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
+      					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
       					<input type="submit" class="btn" value="add">
       				</form>
                                   </div>
                               </div>
                               <?php
-                          } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==6);}?>
+                          } while(($irow = $w->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==6);}?>
       </div>
 
 
