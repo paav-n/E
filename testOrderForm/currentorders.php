@@ -64,41 +64,47 @@ if(!$status){
       while($row = $w->fetch_array(MYSQLI_ASSOC)) {
 
         ?>
-        <table>
-          <tr>
-            <th class="column1">OrderID</th>
-            <th class="column2">Date Ordered</th>
-            <th class="column3">Address</th>
-            <th class="column4">Headcount</th>
-            <th class="column5">Delivery Time</th>
-            <th class="column6">Total</th>
-          </tr>
-          <tr>
-            <td class="column1"><?php echo $row['OrderId']?></td>
-            <td class="column2"><?php echo $row['Date']?></td>
-            <td class="column5"><?php echo $row['Address']?></td>
-            <td class="column6"><?php echo $row['Headcount']?></td>
-            <td class="column7"><?php echo $row['deliverytime']?></td>
-            <td class="column8"><?php echo $row['Total']?></td>
-          </tr>
-      <tr>
-        <th class="column2">Name</th>
-        <th class="column3">Price</th>
-      </tr>
-      <?php
-      $items = explode(",", $row['FullOrder']);
-      foreach ($items as $itemID) {
-        $itemsql = "SELECT * FROM Item WHERE ITEM_ID= '{$itemID}';";
-        $x=mysqli_query($connect,$itemsql);
-        $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
-        <tr>
-        <td class="column1"><?php echo $itemrow['ITEM_NAME']?></td>
-        <td class="column2"><?php echo $itemrow['ITEM_PRICE']?></td>
-        </tr>
-        <?php
-      }
-      ?>
-      </table>
+        <div class="section bg-light">
+       <div class="row ml-3">
+           <div class="col-md-2"><strong>OrderID</strong></div>
+           <div class="col-md-2"><strong>Date Ordered</strong></div>
+           <div class="col-md-2"><strong>Address</strong></div>
+           <div class="col-md-2"><strong>Headcount</strong></div>
+           <div class="col-md-2"><strong>Delivery Time</strong></div>
+           <div class="col-md-2"><strong>Total</strong></div>
+       </div>
+         <div class="row ml-3">
+           <div class="col-md-2"><?php echo $row['OrderId']?></div>
+           <div class="col-md-2"><?php echo $row['Date']?></div>
+           <div class="col-md-2"><?php echo $row['Address']?></div>
+           <div class="col-md-2"><?php echo $row['Headcount']?></div>
+           <div class="col-md-2"><?php echo $row['deliverytime']?></div>
+           <div class="col-md-2"><?php echo $row['Total']?></div>
+         </div>
+     <div class="row ml-5">
+       <div class="col-md-2"><strong>Name</strong></div>
+       <div class="col-md-2"><strong>Price</strong></div>
+     </div>
+     <?php
+     $items = explode(",", $row['FullOrder']);
+     foreach ($items as $itemID) {
+       $itemsql = "SELECT * FROM Item WHERE ITEM_ID= '{$itemID}';";
+       $x=mysqli_query($connect,$itemsql);
+       $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
+       <div class="row ml-5">
+       <div class="col-md-4"><?php echo $itemrow['ITEM_NAME']?></div>
+       <div class="col-md-4"><?php echo $itemrow['ITEM_PRICE']?></div>
+       </div>
+       <?php
+     }
+     ?>
+     <div class="row ml-3">
+     <form action="editcheckout.php" method="post">
+     <input type="hidden" name="order" value=<?php echo $row['OrderId']?>>
+     <input type="submit" class="btn" value="edit order">
+     </form>
+     </div>
+     </div>
       <?php } ?>
 
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
