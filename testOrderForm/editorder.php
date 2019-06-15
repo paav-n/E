@@ -103,6 +103,150 @@ if(!$status){
       ?>
       </table>
       <?php } ?>
+      <h1>Add an item</h1>
+      <h2 class="ml-3">Breakfast for the Bunch</h2>
+      <?php
+                          while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==1) {
+                              ?>
+                              <div class="row ml-3 mb-5">
+                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-2">
+      				<form action="additem.php" method="post">
+      					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+      					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+      					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+      					<input type="submit" class="btn" value="add">
+      				</form>
+                                  </div>
+                              </div>
+                              <?php
+                          }
+                          ?>
+      </div>
+      <?php if($row['ITEM_SECTION']==2){?>
+      <div class="limiter" id="lunch-for-the-bunch">
+      <h2 class="ml-3">Lunch for the Bunch</h2>
+      <?php
+                          do{
+                              ?>
+                              <div class="row ml-3 mb-5">
+                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-2">
+              <form action="additem.php" method="post">
+                <input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+                <input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+                <input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+                <input type="submit" class="btn" value="add">
+              </form>
+                                  </div>
+                              </div>
+
+                              <?php
+                          } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==2);
+                          ?>
+      <?php }?>
+      </div>
+
+      <?php if($row['ITEM_SECTION']==3){?>
+      <div class="limiter" id="value-paks">
+      <h2 class="ml-3">Value Paks</h2>
+      <?php
+                          do{
+                              ?>
+                              <div class="row ml-3 mb-5">
+                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-2">
+              <form action="additem.php" method="post">
+                <input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+                <input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+                <input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+                <input type="submit" class="btn" value="add">
+              </form>
+                                  </div>
+                                </div>
+                              <?php
+                          } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==3);
+                          ?>
+      <?php }?>
+      </div>
+
+      <?php if($row['ITEM_SECTION']==4){?>
+      <div class="limiter" id="lunch-for-one">
+      <h2 class="ml-3">Lunch for One</h2>
+      <?php
+                          do{
+                              ?>
+                              <div class="row ml-3 mb-5">
+                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-2">
+      				<form action="additem.php" method="post">
+      					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+      					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+      					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+      					<input type="submit" class="btn" value="add">
+      				</form>
+                                  </div>
+                              </div>
+                              <?php
+                          } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==4);}
+                          ?>
+      </div>
+
+      <?php if($row['ITEM_SECTION']==5){?>
+      <div class="limiter" id="salads-for-one">
+      <h2 class="ml-3">Box'd Salads for One</h2>
+      <?php
+                          do{
+                              ?>
+                              <div class="row ml-3 mb-5">
+                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-6"><?php echo $row['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-2">
+      				<form action="additem.php" method="post">
+      					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+      					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+      					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+      					<input type="submit" class="btn" value="add">
+      				</form>
+                                  </div>
+                             </div>
+                              <?php
+                          } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==5);
+                          }?>
+      </div>
+
+      <?php if($row['ITEM_SECTION']==6){?>
+      <div class="limiter" id="beverages">
+      <h2 class="ml-3">Beverages</h2>
+      <?php
+                          do{
+                              ?>
+                              <div class="row ml-3 mb-5">
+                                  <div class="col-sm-3"><b><?php echo $row['ITEM_NAME']?></b></div>
+                                  <div class="col-sm-4"><?php echo $row['ITEM_DESCRIPTION']?></div>
+                                  <div class="col-sm-3"><i><?php echo $row['ITEM_PRICE']?></i></div>
+                                  <div class="col-sm-2">
+      				<form action="additem.php" method="post">
+      					<input type="hidden" name="id" value='<?php echo $row['ITEM_ID']?>'>
+      					<input type="hidden" name="name" value='<?php echo $row['ITEM_NAME']?>'>
+      					<input type="hidden" name="price" value='<?php echo $row['ITEM_PRICE']?>'>
+      					<input type="submit" class="btn" value="add">
+      				</form>
+                                  </div>
+                              </div>
+                              <?php
+                          } while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==6);}?>
+      </div>
+
 
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>

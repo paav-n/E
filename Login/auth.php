@@ -54,6 +54,7 @@ if ($response == 'true'){
 	$_SESSION['id']=array();
 	$_SESSION['name']=array();
 	$_SESSION['price']=array();
+  $_SESSION['edit']=array();
         header('Location: http://enthalpylogistics.com/testOrderForm/items.php');
         die();
     }
