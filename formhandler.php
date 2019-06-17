@@ -23,11 +23,26 @@ http://www.templatemo.com/tm-503-newline
 </head>
 <?php
   if (isset($_POST['form-submit'])) {
-      $to = "jake@enthalpylogistics.com";
+      $phone=$_POST['phone'];
+      $type=$_POST['msgtype'];
+      $to = "gerry@enthalpylogistics.com";
       $subject = $_POST['name'];
-      $message = $_POST['message'];
+      $message = "
+<html>
+<head>
+<title>" . $type . "</title>
+</head>
+<body>
+<p> " . $_POST['message'] . "</p>
+<br>
+<br>
+Contact me at: " . $phone . "
+</body>
+</html>";
       $from = $_POST['email'];
-      $headers = "From:" . $from;
+      $headers = "MIME-Version: 1.0" . "\r\n";
+      $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+      $headers.= "From: <" . $from . "> \r\n";
 
       if (mail($to, $subject, $message, $headers)) {
           mail("paavan@enthalpylogistics.com", $subject, $message, $headers);
