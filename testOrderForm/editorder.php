@@ -58,8 +58,20 @@ if(!$status){
       $w=mysqli_query($connect,$results);
 
     ?>
+    <div class="site-wrap">
+    <form action="editexec.php" method="post">
+    <header class='site-header bg-light'>
+    <div class='btn-toolbar pull-right'>
+      <div class='btn-group'>
+        <input type="submit" class="btn btn-primary mr-4" value="Submit Changes">
+      </div>
+    </div>
+    <div class="row align-items-center">
+    <h1>Edit Order <?php echo $ordernum ?></h1>
+    </div>
 
-    <h1>Orders</h1>
+  </header>
+  <div class="main-wrap">
 
     <?php
 
@@ -83,14 +95,14 @@ if(!$status){
            <div class="col-md-2"><?php echo $row['deliverytime']?></div>
            <div class="col-md-2"><?php echo $row['Total']?></div>
          </div>
-         <div class="split-right col-md-6 justify-content-center">
+         <div class="col-md-6 justify-content-center">
            <h2> Order Information</h2>
-           <form action="store.php" method="post">
              <div class="form-group">
                <input type="hidden" name="total" value='<?php echo $taxedtotal ?>'>
                <label for="headcount" class="label">Headcount</label>
                  <div class="form-field-icon-wrap">
                    <select name="headcount"  class="form-control" id="headcount">
+                     <option disabled selected value> -- select an option -- </option>
                  <?php
                    for ($i=1; $i<100; $i++){?>
                      <option value="<?php echo $i;?>"><?php echo $i;?></option>
@@ -213,16 +225,10 @@ if(!$status){
                        <input type="text" class="form-control" id="time" name="time">
                      </div>
                    </div>
-                 <div class="row justify-content-center">
-                   <div class="col-md-auto">
-                     <input type="submit" class="btn btn-primary btn-outline-primary btn-block" value="Order">
-                   </div>
-                 </div>
-               </form>
              </div>
      <div class="row ml-5">
-       <div class="col-md-2"><strong>Name</strong></div>
-       <div class="col-md-2"><strong>Price</strong></div>
+       <div class="col-md-4"><strong>Name</strong></div>
+       <div class="col-md-4"><strong>Price</strong></div>
      </div>
      <?php
      $items = explode(",", $row['FullOrder']);
@@ -233,15 +239,13 @@ if(!$status){
        <div class="row ml-5">
        <div class="col-md-4"><?php echo $itemrow['ITEM_NAME']?></div>
        <div class="col-md-4"><?php echo $itemrow['ITEM_PRICE']?></div>
+       <div class="col-md-4"><input type="checkbox" class="btn" value="add"></div>
        </div>
        <?php
      }
      ?>
      <div class="row ml-3">
-     <form action="editorder.php" method="post">
      <input type="hidden" name="order" value=<?php echo $row['OrderId']?>>
-     <input type="submit" class="btn" value="edit order">
-     </form>
      </div>
      </div>
       <?php } ?>
@@ -257,18 +261,16 @@ if(!$status){
                                   <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-      				<form action="additem.php" method="post">
+
       					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
       					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
       					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-      					<input type="submit" class="btn" value="add">
-      				</form>
+      					<input type="checkbox" class="btn" value="add">
                                   </div>
                               </div>
                               <?php
                           }
                           ?>
-      </div>
       <?php if($irow['ITEM_SECTION']==2){?>
       <div class="limiter" id="lunch-for-the-bunch">
       <h2 class="ml-3">Lunch for the Bunch</h2>
@@ -280,17 +282,16 @@ if(!$status){
                                   <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-              <form action="additem.php" method="post">
+
                 <input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
                 <input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
                 <input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-                <input type="submit" class="btn" value="add">
-              </form>
+                <input type="checkbox" class="btn" value="add">
                                   </div>
                               </div>
 
                               <?php
-                          } while(($irow = $w->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==2);
+                          } while(($irow = $z->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==2);
                           ?>
       <?php }?>
       </div>
@@ -306,16 +307,15 @@ if(!$status){
                                   <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-              <form action="additem.php" method="post">
+
                 <input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
                 <input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
                 <input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-                <input type="submit" class="btn" value="add">
-              </form>
+                <input type="checkbox" class="btn" value="add">
                                   </div>
                                 </div>
                               <?php
-                          } while(($irow = $w->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==3);
+                          } while(($irow = $z->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==3);
                           ?>
       <?php }?>
       </div>
@@ -331,16 +331,14 @@ if(!$status){
                                   <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-      				<form action="additem.php" method="post">
       					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
       					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
       					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-      					<input type="submit" class="btn" value="add">
-      				</form>
+      					<input type="checkbox" class="btn" value="add">
                                   </div>
                               </div>
                               <?php
-                          } while(($irow = $w->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==4);}
+                          } while(($irow = $z->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==4);}
                           ?>
       </div>
 
@@ -355,16 +353,14 @@ if(!$status){
                                   <div class="col-sm-6"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-      				<form action="additem.php" method="post">
       					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
       					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
       					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-      					<input type="submit" class="btn" value="add">
-      				</form>
+      					<input type="checkbox" class="btn" value="add">
                                   </div>
                              </div>
                               <?php
-                          } while(($irow = $w->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==5);
+                          } while(($irow = $z->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==5);
                           }?>
       </div>
 
@@ -379,19 +375,18 @@ if(!$status){
                                   <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-      				<form action="additem.php" method="post">
       					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
       					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
       					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-      					<input type="submit" class="btn" value="add">
-      				</form>
+      					<input type="checkbox" class="btn" value="add">
                                   </div>
                               </div>
                               <?php
-                          } while(($irow = $w->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==6);}?>
+                          } while(($irow = $z->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==6);}?>
       </div>
-
-
+</div>
+</form>
+</div>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
