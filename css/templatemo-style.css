@@ -289,7 +289,8 @@ video::-webkit-media-controls {
 }
 
 .second-slide img {
-  width: 100%;
+  width: 20%;
+	height: 10%;
   overflow: hidden;
 }
 
@@ -384,8 +385,10 @@ video::-webkit-media-controls {
 }
 
 .third-content .left-image img {
-  width: 100%;
+  width: 75%;
   overflow: hidden;
+	display: block;
+	text-align: center;
 }
 
 .third-content .right-feature-text h4 {
@@ -721,7 +724,7 @@ footer a {
   }
 
   .second-slide .right-image {
-    padding-left: 15px!important;
+    padding-left: 30px!important;
   }
 
   .second-slide .right-about-text {
@@ -964,4 +967,9 @@ body.lb-disable-scrolling {
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
+}
+
+.center{
+	width:125%;
+	text-align: center;
 }
