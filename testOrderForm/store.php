@@ -46,20 +46,13 @@ if($i<count($_SESSION['id'])-1){
       }
 }
 $s = "INSERT INTO orders (Email,Name,Address,deliverytime,Headcount,FullOrder, Total) VALUES ('$email', '$name','$fulladdr', '$combinedDT', '$headcount','$fullorderid', '$totalprice')";
-mysqli_query($connect,$s);
-$entersql="";
-$last_id = mysqli_insert_id($connect);
 for($i=0;$i<count($_SESSION['id']);$i++){
       $fullorder.=$_SESSION['name'][$i];
-      $nameofitem=$_SESSION['name'][$i];
-      $priceofitem=$_SESSION['price'][$i];
-      $idofitem=$_SESSION['id'][$i];
-      $entersql.= "INSERT INTO OrderItems (ORDERITEMS_ORDERID, ORDERITEMS_ID, ORDERITEMS_NAME, ORDERITEMS_PRICE) VALUES ('$last_id', '$idofitem', '$nameofitem', '$priceofitem');";
         if($i<count($_SESSION['id'])-1){
         $fullorder.= ", ";
       }
 }
-mysqli_multi_query ( $connect , $entersql);
+
 //$to = "paavan@enthalpylogistics.com";
 $subject = "Order Confirmation test";
 
