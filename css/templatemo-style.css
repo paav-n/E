@@ -7,7 +7,7 @@ http://www.templatemo.com/tm-503-newline
 */
 
 body {
-	font-family: 'Montserrat', sans-serif;
+    font-family: 'Bungee', cursive;
 }
 
 p {
@@ -32,7 +32,7 @@ video {
 }
 
 video::-webkit-media-controls {
-    display:none !important;
+  display:none !important;
 }
 
 .overlay {
