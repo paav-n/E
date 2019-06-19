@@ -102,7 +102,7 @@ if(!$status){
                <label for="headcount" class="label">Headcount</label>
                  <div class="form-field-icon-wrap">
                    <select name="headcount"  class="form-control" id="headcount">
-                     <option disabled selected value> -- select an option -- </option>
+                     <option disabled selected value=""> -- select an option -- </option>
                  <?php
                    for ($i=1; $i<100; $i++){?>
                      <option value="<?php echo $i;?>"><?php echo $i;?></option>
@@ -150,7 +150,7 @@ if(!$status){
                      <div class="form-field-icon-wrap">
                        <span class="icon ion-android-arrow-dropdown"></span>
                        <select name="State" id="state" class="form-control">
-                          <option disabled selected value> -- select an option -- </option>
+                          <option disabled selected value=""> -- select an option -- </option>
                          <option value="AL">Alabama</option>
                          <option value="AK">Alaska</option>
                          <option value="AZ">Arizona</option>
@@ -239,7 +239,7 @@ if(!$status){
        <div class="row ml-5">
        <div class="col-md-4"><?php echo $itemrow['ITEM_NAME']?></div>
        <div class="col-md-4"><?php echo $itemrow['ITEM_PRICE']?></div>
-       <div class="col-md-4"><input type="checkbox" class="btn" value="add"></div>
+       <div class="col-md-4"><input type="checkbox" class="btn" id="delete" name="delete" value="<?php echo $itemrow['ITEM_ID']?>"></div>
        </div>
        <?php
      }
@@ -261,11 +261,7 @@ if(!$status){
                                   <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-
-      					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
-      					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
-      					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-      					<input type="checkbox" class="btn" value="add">
+                                    <input type="checkbox" class="btn" name="add" id="add" value="<?php echo $irow['ITEM_ID']?>">
                                   </div>
                               </div>
                               <?php
@@ -282,11 +278,7 @@ if(!$status){
                                   <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-
-                <input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
-                <input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
-                <input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-                <input type="checkbox" class="btn" value="add">
+                                      <input type="checkbox" class="btn" name="add" id="add" value="<?php echo $irow['ITEM_ID']?>">
                                   </div>
                               </div>
 
@@ -307,11 +299,7 @@ if(!$status){
                                   <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-
-                <input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
-                <input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
-                <input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-                <input type="checkbox" class="btn" value="add">
+                                    <input type="checkbox" class="btn" name="add" id="add" value="<?php echo $irow['ITEM_ID']?>">
                                   </div>
                                 </div>
                               <?php
@@ -331,10 +319,7 @@ if(!$status){
                                   <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-      					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
-      					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
-      					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-      					<input type="checkbox" class="btn" value="add">
+                                    <input type="checkbox" class="btn" name="add" id="add" value="<?php echo $irow['ITEM_ID']?>">
                                   </div>
                               </div>
                               <?php
@@ -353,10 +338,7 @@ if(!$status){
                                   <div class="col-sm-6"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-      					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
-      					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
-      					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-      					<input type="checkbox" class="btn" value="add">
+                                    <input type="checkbox" class="btn" name="add" id="add" value="<?php echo $irow['ITEM_ID']?>">
                                   </div>
                              </div>
                               <?php
@@ -375,10 +357,7 @@ if(!$status){
                                   <div class="col-sm-4"><?php echo $irow['ITEM_DESCRIPTION']?></div>
                                   <div class="col-sm-3"><i><?php echo $irow['ITEM_PRICE']?></i></div>
                                   <div class="col-sm-2">
-      					<input type="hidden" name="id" value='<?php echo $irow['ITEM_ID']?>'>
-      					<input type="hidden" name="name" value='<?php echo $irow['ITEM_NAME']?>'>
-      					<input type="hidden" name="price" value='<?php echo $irow['ITEM_PRICE']?>'>
-      					<input type="checkbox" class="btn" value="add">
+                                    <input type="checkbox" class="btn" name="add" id="add" value="<?php echo $irow['ITEM_ID']?>">
                                   </div>
                               </div>
                               <?php
