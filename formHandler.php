@@ -17,7 +17,7 @@ http://www.templatemo.com/tm-503-newline
     <link rel="stylesheet" href="css/fontAwesome.css">
     <link rel="stylesheet" href="css/templatemo-style.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
 
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
