@@ -24,11 +24,17 @@ if (mysqli_connect_errno()) {
 } else {
     echo '<p>Connection to MySQL server successfully established.</p >';
 }
+
 mysqli_select_db($connect, $database);
+$results = "SELECT * FROM orders WHERE OrderId='{$ordernum}';";
+$w=mysqli_query($connect,$results);
+$row = $w->fetch_array(MYSQLI_ASSOC);
 $s="UPDATE `orders` SET";
+// Needs to check Name,Address(Address,City,State,zip),deliverytime,headcount,fullorder,total);
 $orderid=$_POST['order'];
 $name = $_POST['name'];
 $ccount=0;
+//checks name
 if($name!=""){
   $s.="Name = '$name' ";
   $ccount++;
@@ -36,9 +42,12 @@ if($name!=""){
 $email = $_SESSION['email'];
 $phone = $_POST['phone'];
 $street = $_POST['street-addr'];
+
 $city = $_POST['city'];
 $state=$_POST['State'];
  $zipcode=$_POST['zipcode'];
+ //checks address;
+ $items = explode(",", $row['FullOrder']);
 if($street!=""){
   $fulladdr=$street . ", " . $city . ", " . $state .  ", " . $zipcode;
   if($ccount>0){

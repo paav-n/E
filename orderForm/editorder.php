@@ -233,7 +233,7 @@ if(!$status){
      <?php
      $items = explode(",", $row['FullOrder']);
      foreach ($items as $itemID) {
-       $itemsql = "SELECT * FROM Item WHERE ITEM_ID= '{$itemID}';";
+       $itemsql = "SELECT * FROM Manhattan_Bagel WHERE ITEM_ID= '{$itemID}';";
        $x=mysqli_query($connect,$itemsql);
        $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
        <div class="row ml-5">
