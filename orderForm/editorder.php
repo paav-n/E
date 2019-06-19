@@ -252,7 +252,7 @@ if(!$status){
       <h1>Add an item</h1>
       <h2 class="ml-3">Breakfast for the Bunch</h2>
       <?php
-      $sql = "SELECT * FROM Item ORDER BY ITEM_SECTION";
+      $sql = "SELECT * FROM Manhattan_Bagel WHERE ITEM_SECTION > '0' ORDER BY ITEM_SECTION";
       $z=mysqli_query($connect,$sql);
                           while(($irow = $z->fetch_array(MYSQLI_ASSOC)) && $irow['ITEM_SECTION']==1) {
                               ?>

@@ -93,7 +93,7 @@ if(!$status){
                         die('<p>Failed to connect to MySQL: '.mysqli_error().'</p>');
                     }
                     mysqli_select_db($connect, $database);
-                    $results = "SELECT * FROM Manhattan_Bagel ORDER BY ITEM_SECTION";
+                    $results = "SELECT * FROM Manhattan_Bagel WHERE ITEM_SECTION > '0' ORDER BY ITEM_SECTION";
                     $w=mysqli_query($connect,$results);
 ?>
 <h2 class="ml-3">Breakfast for the Bunch</h2>

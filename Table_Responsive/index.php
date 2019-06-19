@@ -74,8 +74,6 @@ if(!$status){
                             <td class="column7"><?php echo $row['deliverytime']?></td>
                             <td class="column8"><?php echo $row['Total']?></td>
                           </tr>
-                      </table>
-                      <table>
                       <tr>
                         <th class="column2">Name</th>
                         <th class="column3">Price</th>
