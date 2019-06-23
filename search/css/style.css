@@ -1,6 +1,6 @@
 body {
   background: #fff;
-  font-family: "Raleway", arial, sans-serif;
+  font-family: 'Bungee', cursive;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.8;
@@ -20,7 +20,7 @@ a:hover {
 
 h1, h2, h3, h4, h5 {
   color: #000;
-  font-family: "Playfair Display", times, serif;
+  font-family: 'Bungee', cursive;
 }
 
 header {
@@ -697,7 +697,7 @@ textarea.form-control {
 
 .box h2 {
   font-size: 18px;
-  font-family: "Raleway", arial, sans-serif;
+  font-family: 'Bungee', cursive;
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
@@ -1045,7 +1045,7 @@ textarea.form-control {
 .site-footer .list-unstyled li h3 {
   font-size: 16px;
   font-weight: normal;
-  font-family: "Raleway", arial, sans-serif;
+  font-family: 'Bungee', cursive;
 }
 
 .site-footer p {
