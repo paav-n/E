@@ -47,10 +47,10 @@ if ($response == 'true'){
     $w=mysqli_query($connect,$q);
     $rowe=mysqli_fetch_row($w);
     $therole = $rowe[0];
-    if ($therole == "res"){
+    if ($therole == "patron"){
         $_SESSION["Logged"] = true;
         $_SESSION['email']=$rowe[1];
-        $_SESSION["Role"] = "res";
+        $_SESSION["Role"] = "patron";
 	$_SESSION['id']=array();
 	$_SESSION['name']=array();
 	$_SESSION['price']=array();
