@@ -55,7 +55,7 @@ if ($response == 'true'){
 	$_SESSION['name']=array();
 	$_SESSION['price']=array();
   $_SESSION['edit']=array();
-        header('Location: http://enthalpylogistics.com/search/index.php');
+        header('Location: http://enthalpylogistics.com/search/index.html');
         die();
     }
     if ($therole == "admin"){
