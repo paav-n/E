@@ -1250,7 +1250,7 @@ function computeStyle(data, options) {
 
 /**
  * Helper used to know if the given modifier depends from another one.<br />
- * It checks if the needed modifier is listed and enabled.
+ * It checks if the needed modifier is search and enabled.
  * @method
  * @memberof Popper.Utils
  * @param {Array} modifiers - list of modifiers
@@ -2364,7 +2364,7 @@ var Popper = function () {
     this.state.eventsEnabled = eventsEnabled;
   }
 
-  // We can't use class properties because they don't get listed in the
+  // We can't use class properties because they don't get search in the
   // class prototype and break stuff like Sinon stubs
 
 
