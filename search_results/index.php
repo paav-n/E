@@ -146,7 +146,7 @@
                                         value="1">1 mile</option>
                                 <option <?php if($_POST&&$_POST['maxdistance']=='5')echo"selected='selected'";?>
                                         value="5">5 miles</option>
-                                <option <?php if($_POST&&$_POST['maxdistamce']=='10')echo"selected='selected'";?>
+                                <option <?php if($_POST&&$_POST['maxdistance']=='10')echo"selected='selected'";?>
                                         value="10">10 miles</option>
                                 <option <?php if($_POST&&$_POST['maxdistance']=='25')echo"selected='selected'";?>
                                         value="25">25 miles</option>
@@ -174,10 +174,10 @@
         <div class="container">
             <div class="row">
                 <?php
-                    $host_name = '127.0.0.1';
-                    $database = 'test';
-                    $user_name = 'root';
-                    $password = 'Jd05302000';
+                    $host_name = 'db777190816.hosting-data.io';
+                    $database = 'db777190816';
+                    $user_name = 'dbo777190816';
+                    $password = 'Singhi1234!';
                     $connect = mysqli_connect($host_name, $user_name, $password, $database);
                     if (mysqli_connect_errno()) {
                         die('<p>Failed to connect to MySQL: ' . mysqli_error() . '</p>');
