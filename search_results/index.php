@@ -190,7 +190,7 @@
                         $destinations.=urlencode($row['address']);
                         $destinations.='|';
                     }
-                    $addressurl=urlencode('321 glenwood ave leonia nj');
+                    $addressurl=urlencode($_GET['finaladdress']);
                     $final='https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$addressurl.'&destinations='.$destinations.'&key=AIzaSyDwad8k-q1agOTmGer_TXCG4tMCIWn_Gho';
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);

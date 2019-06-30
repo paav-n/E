@@ -19,7 +19,7 @@
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>
+  <body onload="initialize()">
     
     <header role="banner">
      
@@ -64,11 +64,13 @@
               <p>Discover &amp; connect with great places around your area.</p>
             </div>
 
-            <form class="form-inline element-animate" id="search-form">
+            <form class="form-inline element-animate" id="search-form" method="GET" action="../search_results/index.php">
               <label class="sr-only">Location</label>
-              <input type="text" class="form-control form-control-block search-input" id="autocomplete" placeholder="Search Location with Google Search API" onFocus="geolocate()">
+
+              <input name="finaladdress" type="text" class="form-control form-control-block search-input" id="autocomplete" placeholder="Search Location with Google Search API" onFocus="geolocate()">
               <button type="submit" class="btn btn-primary">Search</button>
             </form>
+
 
           </div>
         </div>
@@ -180,6 +182,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/jquery.stellar.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCON3axt0wBu2DVDlQvyBsUI8cvPq8rIkE&libraries=places&language=en"></script>
+
+
+
+
 
     <script>
       // This example displays an address form, using the autocomplete feature
@@ -199,16 +206,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         postal_code: 'short_name'
       };
 
-      function initAutocomplete() {
-        // Create the autocomplete object, restricting the search to geographical
-        // location types.
+      var autocomplete;
+      function initialize() {
         autocomplete = new google.maps.places.Autocomplete(
-            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-            {types: ['geocode']});
-
-        // When the user selects an address from the dropdown, populate the address
-        // fields in the form.
-        autocomplete.addListener('place_changed', fillInAddress);
+                /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+                { types: ['geocode'] });
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        });
       }
 
       function fillInAddress() {
@@ -250,8 +254,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
       }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&libraries=places&callback=initAutocomplete"
-        async defer></script>
+
 
     <script src="js/main.js"></script>
   </body>
