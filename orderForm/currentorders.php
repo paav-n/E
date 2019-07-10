@@ -57,7 +57,6 @@ if(!$status){
               </li>
               -->
             </ul>
-
           </div>
         </div>
       </nav>
