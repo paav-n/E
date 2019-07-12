@@ -268,7 +268,7 @@
                                         <h5><?php echo ucwords($value->data['name']); ?></h5>
                                         <a href="#"><i class="flaticon-placeholder"></i> <span>Distance</span></a>
                                         <p><?php echo intval($value->distance*0.6214/1000),' miles away'; ?></p>
-                                        <a href="map.php?address=<?php echo $value->data['address'];?>'"><i class="flaticon-cursor"></i> <span>Show on Map</span></a>
+                                        <a target="blank" href="map.php?address=<?php echo $value->data['address'];?>'"><i class="flaticon-cursor"></i> <span>Show on Map</span></a>
 
 
                                     </div>
