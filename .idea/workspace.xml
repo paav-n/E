@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44c49174-4b54-43f0-abc2-97becf74deb4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Table_Responsive/accept_handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/Table_Responsive/accept_handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Table_Responsive/reject_handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/Table_Responsive/reject_handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Table_Responsive/ContactFrom_v4/accept_handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/Table_Responsive/ContactFrom_v4/accept_handler.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Table_Responsive/ContactFrom_v4/accept_handler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="96" lean-forward="true" selection-start-line="8" selection-start-column="96" selection-end-line="8" selection-end-column="96" />
+            <state relative-caret-position="750">
+              <caret line="94" column="32" lean-forward="true" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -129,17 +129,6 @@
               <item name="E" type="b2602c69:ProjectViewProjectNode" />
               <item name="E" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="E" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E" type="462c0819:PsiDirectoryNode" />
-              <item name="Table_Responsive" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="E" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E" type="462c0819:PsiDirectoryNode" />
-              <item name="Table_Responsive" type="462c0819:PsiDirectoryNode" />
-              <item name="ContactFrom_v4" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -189,7 +178,7 @@
       <workItem from="1561835325992" duration="5932000" />
       <workItem from="1562177231662" duration="4256000" />
       <workItem from="1562294604396" duration="3491000" />
-      <workItem from="1562946808182" duration="2654000" />
+      <workItem from="1562946808182" duration="3278000" />
     </task>
     <task id="LOCAL-00001" summary="why is gerry not spelled with a j">
       <created>1561746206442</created>
@@ -247,11 +236,32 @@
       <option name="project" value="LOCAL" />
       <updated>1562947916049</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="styled confirmations/rejection">
+      <created>1562950455949</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1562950455949</updated>
+    </task>
+    <task id="LOCAL-00010" summary="styled confirmations/rejection">
+      <created>1562950528175</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1562950528175</updated>
+    </task>
+    <task id="LOCAL-00011" summary="styled confirmations/rejection with everything">
+      <created>1562950656045</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1562950656045</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17766000" />
+    <option name="totallyTimeSpent" value="18390000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -308,7 +318,9 @@
     <MESSAGE value="works for ur database now" />
     <MESSAGE value="too sensitive" />
     <MESSAGE value="fixed link for orderform" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed link for orderform" />
+    <MESSAGE value="styled confirmations/rejection" />
+    <MESSAGE value="styled confirmations/rejection with everything" />
+    <option name="LAST_COMMIT_MESSAGE" value="styled confirmations/rejection with everything" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///Applications/XAMPP/xamppfiles/htdocs/coexist/test.html">
@@ -406,8 +418,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Table_Responsive/ContactFrom_v4/accept_handler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="96" lean-forward="true" selection-start-line="8" selection-start-column="96" selection-end-line="8" selection-end-column="96" />
+        <state relative-caret-position="750">
+          <caret line="94" column="32" lean-forward="true" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="32" />
         </state>
       </provider>
     </entry>
