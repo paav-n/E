@@ -11,7 +11,6 @@ if (mysqli_connect_errno()) {
 mysqli_select_db($connect, $database);
 
 
-
 ?>
 <html>
 <body>

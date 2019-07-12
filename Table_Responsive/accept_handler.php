@@ -14,6 +14,7 @@ mysqli_select_db($connect, $database);
 
 ?>
 <html>
+
 <body>
 <form method="POST" action="">
     <p>Please select your delivery method:</p>
