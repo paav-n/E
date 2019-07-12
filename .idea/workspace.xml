@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="44c49174-4b54-43f0-abc2-97becf74deb4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Table_Responsive/accept_handler.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Table_Responsive/reject_handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/Login/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Login/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Table_Responsive/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Table_Responsive/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/search/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search_results/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/search_results/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orderForm/currentorders.php" beforeDir="false" afterPath="$PROJECT_DIR$/orderForm/currentorders.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,11 +40,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Table_Responsive/reject_handler.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="570">
               <caret line="38" selection-start-line="38" selection-end-line="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/orderForm/currentorders.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/orderForm/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -87,6 +99,7 @@
       <find>autocomplete</find>
       <find>show on map</find>
       <find>./</find>
+      <find>home</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -112,6 +125,7 @@
         <option value="$PROJECT_DIR$/Table_Responsive/index.php" />
         <option value="$PROJECT_DIR$/Table_Responsive/accept_handler.php" />
         <option value="$PROJECT_DIR$/Table_Responsive/reject_handler.php" />
+        <option value="$PROJECT_DIR$/orderForm/currentorders.php" />
       </list>
     </option>
   </component>
@@ -135,22 +149,7 @@
             <path>
               <item name="E" type="b2602c69:ProjectViewProjectNode" />
               <item name="E" type="462c0819:PsiDirectoryNode" />
-              <item name="Login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="E" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E" type="462c0819:PsiDirectoryNode" />
-              <item name="search" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="E" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E" type="462c0819:PsiDirectoryNode" />
-              <item name="search_results" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="E" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E" type="462c0819:PsiDirectoryNode" />
-              <item name="Table_Responsive" type="462c0819:PsiDirectoryNode" />
+              <item name="orderForm" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -197,7 +196,7 @@
       <workItem from="1561835325992" duration="5932000" />
       <workItem from="1562177231662" duration="4256000" />
       <workItem from="1562294604396" duration="3491000" />
-      <workItem from="1562946808182" duration="318000" />
+      <workItem from="1562946808182" duration="781000" />
     </task>
     <task id="LOCAL-00001" summary="why is gerry not spelled with a j">
       <created>1561746206442</created>
@@ -227,11 +226,25 @@
       <option name="project" value="LOCAL" />
       <updated>1562208180012</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="too sensitive">
+      <created>1562947256699</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1562947256699</updated>
+    </task>
+    <task id="LOCAL-00006" summary="too sensitive">
+      <created>1562947373932</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1562947373932</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15430000" />
+    <option name="totallyTimeSpent" value="15893000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -359,6 +372,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orderForm/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orderForm/currentorders.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
         </state>
       </provider>
     </entry>
