@@ -22,8 +22,8 @@ if (mysqli_connect_errno()) {
 }
 
 mysqli_select_db($connect, $database);
-$user = $_GET["username"];
-$password = $_GET["pass"];
+$user = $_POST["username"];
+$password = $_POST["pass"];
 $therole = null;
 
 $s="SELECT pass from users where username='$user'";
@@ -43,7 +43,7 @@ if ($thePassword == ""){
 }
 //echo $response;
 if ($response == 'true'){
-    $q="SELECT roles,email from users where username='$user'";
+    $q="SELECT roles,email,business_name from users where username='$user'";
     $w=mysqli_query($connect,$q);
     $rowe=mysqli_fetch_row($w);
     $therole = $rowe[0];
@@ -51,11 +51,23 @@ if ($response == 'true'){
         $_SESSION["Logged"] = true;
         $_SESSION['email']=$rowe[1];
         $_SESSION["Role"] = "patron";
-	$_SESSION['id']=array();
-	$_SESSION['name']=array();
-	$_SESSION['price']=array();
-  $_SESSION['edit']=array();
+        $_SESSION['id']=array();
+        $_SESSION['name']=array();
+        $_SESSION['price']=array();
+        $_SESSION['edit']=array();
         header('Location: http://enthalpylogistics.com/search/index.html');
+        die();
+    }
+    if ($therole == "vendor"){
+        $_SESSION["Logged"] = true;
+        $_SESSION['email']=$rowe[1];
+        $_SESSION["Role"] = "vendor";
+        $_SESSION['id']=array();
+        $_SESSION['name']=array();
+        $_SESSION['price']=array();
+        $_SESSION['business_name']=$rowe[2];
+        $_SESSION['edit']=array();
+        header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
         die();
     }
     if ($therole == "admin"){
