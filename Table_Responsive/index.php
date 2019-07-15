@@ -55,6 +55,9 @@ if(!$status){
                 if($_SESSION['Role']=='vendor') {
                     $results="SELECT * FROM orders WHERE Venue='$_SESSION[business_name]' ORDER BY OrderId DESC";
                 }
+                if($_SESSION['Role']=='maestro') {
+                    $results="SELECT * FROM orders WHERE ByMaestro= 1 '$_SESSION[business_name]' ORDER BY OrderId DESC";
+                }
                 $w=mysqli_query($connect,$results);
                 $Pending=array();
                 $Accepted=array();
