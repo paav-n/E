@@ -76,6 +76,12 @@ if ($response == 'true'){
         header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
         die();
     }
+    if ($therole == "maestro"){
+        $_SESSION["Role"] = "maestro";
+        $_SESSION["Logged"] = true;
+        header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
+        die();
+    }
 }
 
 if (is_null($therole)){
