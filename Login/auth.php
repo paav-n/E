@@ -77,7 +77,7 @@ if ($response == 'true'){
         die();
     }
     if ($therole == "maestro"){
-        $_SESSION["Role"] = "admin";
+        $_SESSION["Role"] = "maestro";
         $_SESSION["Logged"] = true;
         header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
         die();
