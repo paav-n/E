@@ -4,10 +4,6 @@
 [ FONT ]*/
 
 
-@font-face {
-  font-family: OpenSans-Regular;
-  src: url('../fonts/OpenSans/OpenSans-Regular.ttf');
-}
 
 
 
@@ -42,7 +38,7 @@ a:hover {
 }
 
 /* ------------------------------------ */
-h1,h2,h3,h4,h5,h6 {margin: 0px;}
+h1,h2,h3,h4,h5,h6 {margin: 0px;font-family: 'Bungee', cursive;}
 
 p {margin: 0px;}
 

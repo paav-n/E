@@ -3,7 +3,7 @@ session_start();
 session_set_cookie_params(0,"/E");
 $status= $_SESSION["Logged"];
 if(!$status){
-    //echo"Not Logged In<br>";
+    echo"Not Logged In<br>";
     header('Location: http://enthalpylogistics.com/');
     die();
 }
@@ -16,6 +16,7 @@ if(!$status){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="../img/Polaxicon.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -54,6 +55,9 @@ if(!$status){
                 }
                 if($_SESSION['Role']=='vendor') {
                     $results="SELECT * FROM orders WHERE Venue='$_SESSION[business_name]' ORDER BY OrderId DESC";
+                }
+                if($_SESSION['Role']=='maestro') {
+                    $results="SELECT * FROM orders WHERE ByMaestro= 1 ORDER BY OrderId DESC";
                 }
                 $w=mysqli_query($connect,$results);
                 $Pending=array();
@@ -98,7 +102,11 @@ if(!$status){
                                 <td class="column7"><?php echo $row['deliverytime']?></td>
                                 <td class="column8"><?php echo $row['Total']?></td>
                                 <td class="column9"><?php echo $row['status'];?></td>
-                                <td class="column10"><?php echo ($row['ByMaestro']==1?"Maestro":"Venue");?></td>
+                                <td class="column10"><?php if($row['ByMaestro']==1){
+                                        echo"Maestro";}
+                                    else if($row['ByMaestro']===NULL){ echo $row['ByMaestro'];}
+                                    else{
+                                        echo "Venue";}?></td>
                             </tr>
                             <tr>
 
@@ -123,8 +131,8 @@ if(!$status){
                                 </tr>
                                 <?php
                             }
-                            $url='http://enthalpylogistics.com/Table_Responsive/accept_handler.php?orderid='.$row['OrderId'];
-                            $url2='http://enthalpylogistics.com/Table_Responsive/reject_handler.php?orderid='.$row['OrderId'];
+                            $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/accept_handler.php?orderid='.$row['OrderId'];
+                            $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
                             if($_SESSION['Role']=='vendor' && $row['status']=='Pending') { ?>
                                 <button onclick="window.location.href = '<?php echo $url;?>';">
                                     Accept</button>
@@ -166,7 +174,11 @@ if(!$status){
                                 <td class="column7"><?php echo $row['deliverytime']?></td>
                                 <td class="column8"><?php echo $row['Total']?></td>
                                 <td class="column9"><?php echo $row['status'];?></td>
-                                <td class="column10"><?php echo ($row['ByMaestro']==1?"Maestro":"Venue");?></td>
+                                <td class="column10"><?php if($row['ByMaestro']==1){
+                                        echo"Maestro";}
+                                    else if($row['ByMaestro']===NULL){ echo $row['ByMaestro'];}
+                                    else{
+                                        echo "Venue";}?></td>
                             </tr>
                             <tr>
 
@@ -191,8 +203,8 @@ if(!$status){
                                 </tr>
                                 <?php
                             }
-                            $url='http://enthalpylogistics.com/Table_Responsive/accept_handler.php?orderid='.$row['OrderId'];
-                            $url2='http://enthalpylogistics.com/Table_Responsive/reject_handler.php?orderid='.$row['OrderId'];
+                            $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/accept_handler.php?orderid='.$row['OrderId'];
+                            $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
                             if($_SESSION['Role']=='vendor' && $row['status']=='Pending') { ?>
                                 <button onclick="window.location.href = '<?php echo $url;?>';">
                                     Accept</button>
@@ -234,7 +246,11 @@ if(!$status){
                                 <td class="column7"><?php echo $row['deliverytime']?></td>
                                 <td class="column8"><?php echo $row['Total']?></td>
                                 <td class="column9"><?php echo $row['status'];?></td>
-                                <td class="column10"><?php echo ($row['ByMaestro']==1?"Maestro":"Venue");?></td>
+                                <td class="column10"><?php if($row['ByMaestro']==1){
+                                        echo"Maestro";}
+                                    else if($row['ByMaestro']===NULL){ echo $row['ByMaestro'];}
+                                    else{
+                                        echo "Venue";}?></td>
                             </tr>
                             <tr>
 
@@ -259,8 +275,8 @@ if(!$status){
                                 </tr>
                                 <?php
                             }
-                            $url='http://enthalpylogistics.com/Table_Responsive/accept_handler.php?orderid='.$row['OrderId'];
-                            $url2='http://enthalpylogistics.com/Table_Responsive/reject_handler.php?orderid='.$row['OrderId'];
+                            $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/accept_handler.php?orderid='.$row['OrderId'];
+                            $url2='http://enthalpylogistics.com/Table_Responsive//ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
                             if($_SESSION['Role']=='vendor' && $row['status']=='Pending') { ?>
                                 <button onclick="window.location.href = '<?php echo $url;?>';">
                                     Accept</button>

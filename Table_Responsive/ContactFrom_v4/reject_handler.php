@@ -36,7 +36,7 @@ ob_start();
     <div class="wrap-contact100">
         <form class="contact100-form validate-form" method="POST">
 				<span class="contact100-form-title">
-					Order Confirmation
+					Order Rejection
 				</span>
 
             <div class="wrap-input100 validate-input" data-validate="Name is required">
@@ -52,21 +52,10 @@ ob_start();
             </div>
             <input type="hidden" name="submit">
 
-            <div class="wrap-input100 input100-select">
-                <span class="label-input100">Delivery Method</span>
-                <div>
-                    <select class="selection-2" name="method">
 
-
-                        <option value="1">Deliver By Maestro </option>
-                        <option value="0">Deliver By Venue </option>
-                    </select>
-                </div>
-                <span class="focus-input100"></span>
-            </div>
 
             <div class="wrap-input100 validate-input" data-validate = "Message is required">
-                <span class="label-input100">Any Comments for the Customer</span>
+                <span class="label-input100">Please Clarify Why The Order Was Rejected</span>
                 <textarea class="input100" name="message" placeholder="Your message here..."></textarea>
                 <span class="focus-input100"></span>
             </div>
@@ -98,9 +87,10 @@ if (mysqli_connect_errno()) {
 mysqli_select_db($connect, $database);
 if(isset($_POST['submit'])){
     $orderid=$_GET['orderid'];
-    $updatestatement="Update orders set status='Accepted', ByMaestro='$_POST[method]' where OrderId=$orderid";
+    $updatestatement="Update orders set status='Rejected'where OrderId=$orderid";
     echo $updatestatement;
     if($connect->query($updatestatement)){
+        echo "success";
         header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
         die();
     }
