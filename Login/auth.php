@@ -43,7 +43,7 @@ if ($thePassword == ""){
 }
 //echo $response;
 if ($response == 'true'){
-    $q="SELECT roles,email,business_name from users where username='$user'";
+    $q="SELECT roles,email,business_name,id from users where username='$user'";
     $w=mysqli_query($connect,$q);
     $rowe=mysqli_fetch_row($w);
     $therole = $rowe[0];
@@ -79,9 +79,13 @@ if ($response == 'true'){
     if ($therole == "maestro"){
         $_SESSION["Role"] = "maestro";
         $_SESSION["Logged"] = true;
-        header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
+        $_SESSION["id"]=$rowe[3];
+
+        $url='Location: http://enthalpylogistics.com/Table_Responsive/accept_handler.php';
+        header($url);
         die();
     }
+}
 }
 
 if (is_null($therole)){
