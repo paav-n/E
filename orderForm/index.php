@@ -35,7 +35,7 @@ if(!$status){
 
       <nav class="navbar navbar-expand-md navbar-dark bg-light">
         <div class="container">
-          <a class="navbar-brand" href="index.html">Enthalpy</a>
+          <a class="navbar-brand" href="index.php">Enthalpy</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -43,7 +43,7 @@ if(!$status){
           <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
             <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html">Home</a>
+                <a class="nav-link active" href="index.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../orderForm/currentorders.php">Orders</a>
@@ -72,8 +72,8 @@ if(!$status){
              <div class="col-md-8 text-center">
 
                <div class="mb-5 element-animate">
-                 <h1>Current Orders</h1>
-                 <p>View &amp; edit current orders.</p>
+                 <h1>Menu</h1>
+                 <p>Scroll down to order!</p>
                </div>
 
              </div>
@@ -100,6 +100,7 @@ if(!$status){
                                 $results = "SELECT * FROM Manhattan_Bagel WHERE ITEM_SECTION > '0' ORDER BY ITEM_SECTION";
                                 $w=mysqli_query($connect,$results);
             ?>
+            <br>
             <h2 class="ml-3">Breakfast for the Bunch</h2>
             <?php
                                 while(($row = $w->fetch_array(MYSQLI_ASSOC)) && $row['ITEM_SECTION']==1) {
