@@ -85,8 +85,9 @@ if ($response == 'true'){
         header($url);
         die();
     }
+
 }
-}
+
 
 if (is_null($therole)){
     echo"Not Logged In<br>";
