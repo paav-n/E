@@ -51,13 +51,15 @@ if(!$status){
                 mysqli_select_db($connect, $database);
                 $result;
                 $result="SELECT * FROM orders WHERE OrderId=$_GET[orderid]";
- 
                 $w=mysqli_query($connect,$result);
               	$row = $w->fetch_array(MYSQLI_ASSOC);
-              	$address=row['Address'];
-              	$datetime=row['deliverytime'];
-              	$results="SELECT * FROM orders WHERE Date(deliverytime)=Date($datetime)";
-              echo $results;
+              	$address=$row['Address'];
+              	$datetime=$row['deliverytime'];
+              	echo $datetime;
+              	$datetest=date("Y-m-d", strtotime($row["deliverytime"]));
+              	echo $datetest;
+              	$results="SELECT * FROM orders WHERE Date(deliverytime)=$datetest";
+              	echo $results;
               	$t=mysqli_query($connect,$results);
                 $Pending=array();
                 $Accepted=array();
