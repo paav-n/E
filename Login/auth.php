@@ -58,10 +58,10 @@ if ($response == 'true'){
         header('Location: http://enthalpylogistics.com/search/index.html');
         die();
     }
-    if ($therole == "vendor"){
+    if ($therole == "venue"){
         $_SESSION["Logged"] = true;
         $_SESSION['email']=$rowe[1];
-        $_SESSION["Role"] = "vendor";
+        $_SESSION["Role"] = "venue";
         $_SESSION['id']=array();
         $_SESSION['name']=array();
         $_SESSION['price']=array();
