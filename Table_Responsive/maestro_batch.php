@@ -55,23 +55,59 @@ if(!$status){
               	$row = $w->fetch_array(MYSQLI_ASSOC);
               	$address=$row['Address'];
               	$datetime=$row['deliverytime'];
-              	echo $datetime;
               	$datetest=date("Y-m-d", strtotime($row["deliverytime"]));
-              	echo $datetest;
-              	$results="SELECT * FROM orders WHERE Date(deliverytime)=$datetest";
-              	echo $results;
+              	$results="SELECT * FROM orders WHERE ((Date(deliverytime)='$datetest' and status='Accepted') 
+                and (TIMEDIFF(deliverytime,'$datetime')<'01:00:00'or TIMEDIFF(deliverytime,'$datetime')>'-01:00:00'))";          
               	$t=mysqli_query($connect,$results);
+              $destinations='';
+              while($row = mysqli_fetch_array($t, MYSQLI_ASSOC)) {
+
+                  $destinations.=urlencode($row['Address']);
+                  $destinations.='|';
+              }
+              $addressurl=urlencode($address);
+              $final='https://maps.googleapis.com/maps/api/distancematrix/json?origins='.$addressurl.'&destinations='.$destinations.'&key=AIzaSyDwad8k-q1agOTmGer_TXCG4tMCIWn_Gho';
+              $ch = curl_init();
+              curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+              curl_setopt($ch, CURLOPT_HEADER, 0);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+              curl_setopt($ch, CURLOPT_URL, $final);
+              curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+              curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 3);
+              curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+              $resp_json= curl_exec($ch);
+              $resp=json_decode($resp_json,true);
+              class eateries{
+                  public $data;
+                  public $distance;
+              }
+
+              $newresults ="SELECT * FROM orders WHERE ((Date(deliverytime)='$datetest' and status='Accepted') 
+                and (TIMEDIFF(deliverytime,'$datetime')<'01:00:00'or TIMEDIFF(deliverytime,'$datetime')>'-01:00:00'))";
+              $new=mysqli_query($connect,$newresults);
+              $eaterieswithdistances=array();
+              $index=0;
+              $count_outputted=0;
+              while($newrow = $new->fetch_array(MYSQLI_ASSOC)) {
+                  $temp=new eateries;
+                  $temp->data=$newrow;
+                  $temp->distance=$resp['rows'][0]['elements'][$index]['duration']['value'];
+                  if($temp->distance/60<60) {
+                      array_push($eaterieswithdistances, $temp);
+                    	$count_outputted++;
+                  }
+                  $index++;
+              }
+              if($count_outputted==0){
+                header
+              }
+
                 $Pending=array();
                 $Accepted=array();
-                while($row = $t->fetch_array(MYSQLI_ASSOC)) {
-                    if($row['status']=='Accepted'&&$row['Maestro']==NULL){
-                        array_push($Pending,$row);
-                    }
-                }
                 if($_SESSION['Role']=='maestro') {?>
-                    <h1>Pending Orders</h1><br>
+                    <h1>Do You Want To Add One of These Orders</h1><br>
                     <?php
-                    foreach($Pending as $row){
+                    foreach($eaterieswithdistances as $row){
                         ?>
                         <div class="row mb-5">
                             <table>
@@ -89,21 +125,21 @@ if(!$status){
                                     <th class="column11">Maestro</th>
                                 </tr>
                                 <tr>
-                                    <td class="column1"><?php echo $row['OrderId']?></td>
-                                    <td class="column2"><?php echo $row['Date']?></td>
-                                    <td class="column3"><?php echo $row['Name']?></td>
-                                    <td class="column4"><?php echo $row['Email']?></td>
-                                    <td class="column5"><?php echo $row['Address']?></td>
-                                    <td class="column6"><?php echo $row['Headcount']?></td>
-                                    <td class="column7"><?php echo $row['deliverytime']?></td>
-                                    <td class="column8"><?php echo $row['Total']?></td>
-                                    <td class="column9"><?php echo $row['status'];?></td>
-                                    <td class="column10"><?php if($row['ByMaestro']==1){
+                                    <td class="column1"><?php echo $row->data['OrderId']?></td>
+                                    <td class="column2"><?php echo $row->data['Date']?></td>
+                                    <td class="column3"><?php echo $row->data['Name']?></td>
+                                    <td class="column4"><?php echo $row->data['Email']?></td>
+                                    <td class="column5"><?php echo $row->data['Address']?></td>
+                                    <td class="column6"><?php echo $row->data['Headcount']?></td>
+                                    <td class="column7"><?php echo $row->data['deliverytime']?></td>
+                                    <td class="column8"><?php echo $row->data['Total']?></td>
+                                    <td class="column9"><?php echo $row->data['status'];?></td>
+                                    <td class="column10"><?php if($row->data['ByMaestro']==1){
                                             echo"Maestro";}
-                                        else if($row['ByMaestro']===NULL){ echo $row['ByMaestro'];}
+                                        else if($row->data['ByMaestro']===NULL){ echo $row->data['ByMaestro'];}
                                         else{
                                             echo "Venue";}?></td>
-                                    <td class="column11"><?php if($row['Maestro']==NULL){
+                                    <td class="column11"><?php if($row->data['Maestro']==NULL){
                                             echo"Awaiting Maestro";}
                                         ?></td>
                                 </tr>
@@ -113,7 +149,7 @@ if(!$status){
                                     <th class="column3">Price</th>
                                 </tr>
                                 <?php
-                                $items = explode(",", $row['FullOrder']);
+                                $items = explode(",", $row->data['FullOrder']);
                                 foreach ($items as $itemID) {
                                     $itemsql;
                                     if($_SESSION['ROLE']=='vendor') {
@@ -130,11 +166,11 @@ if(!$status){
                                     </tr>
                                     <?php
                                 }
-                                $url='http://enthalpylogistics.com/Table_Responsive/maestro_batch.php?orderid='.$row['OrderId'];
-                                $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
-                                if($_SESSION['Role']=='maestro' && $row['status']!='Accepted By Maestro') { ?>
+                                $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/maestro_accept_handler.php?orderid='.$_GET['orderid'];
+                                $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$_GET['orderid'];
+                                if($_SESSION['Role']=='maestro' && $row->data['status']!='Accepted By Maestro') { ?>
                                     <button onclick="window.location.href = '<?php echo $url;?>';">
-                                        Accept</button>
+                                        Add Order</button>
                                     <?php
                                 }
                                 ?>
@@ -144,153 +180,7 @@ if(!$status){
 
                     }
                 }?>
-                <h1>Orders That You Accepted</h1><br>
-                <?php
-                foreach($Accepted as $row){ ?>
-                    <div class="row mb-5">
-                        <table>
-                            <tr>
-                                <th class="column1">OrderID</th>
-                                <th class="column2">Date Ordered</th>
-                                <th class="column3">Name</th>
-                                <th class="column4">Email</th>
-                                <th class="column5">Address</th>
-                                <th class="column6">Headcount</th>
-                                <th class="column7">Delivery Time</th>
-                                <th class="column8">Total</th>
-                                <th class="column9">Status</th>
-                                <th class="column10">Delivery Method</th>
-                                <th class="column11">Maestro</th>
-                            </tr>
-                            <tr>
-                                <td class="column1"><?php echo $row['OrderId']?></td>
-                                <td class="column2"><?php echo $row['Date']?></td>
-                                <td class="column3"><?php echo $row['Name']?></td>
-                                <td class="column4"><?php echo $row['Email']?></td>
-                                <td class="column5"><?php echo $row['Address']?></td>
-                                <td class="column6"><?php echo $row['Headcount']?></td>
-                                <td class="column7"><?php echo $row['deliverytime']?></td>
-                                <td class="column8"><?php echo $row['Total']?></td>
-                                <td class="column9"><?php echo $row['status'];?></td>
-                                <td class="column10"><?php if($row['ByMaestro']==1){
-                                        echo"Maestro";}
-                                    else if($row['ByMaestro']===NULL){ echo $row['ByMaestro'];}
-                                    else{
-                                        echo "Venue";}?></td>
-                                <td class="column11"><?php echo $row['Maestro'];?></td>
-                            </tr>
-                            <tr>
-
-                                <th class="column2">Name</th>
-                                <th class="column3">Price</th>
-                            </tr>
-                            <?php
-                            $items = explode(",", $row['FullOrder']);
-                            foreach ($items as $itemID) {
-                                $itemsql;
-                                if($_SESSION['ROLE']=='vendor') {
-                                    $itemsql = "SELECT * FROM {$_SESSION['business_name']} WHERE ITEM_ID='{$itemID}';";
-                                }
-                                else{
-                                    $itemsql = "SELECT * FROM Manhattan_Bagel WHERE ITEM_ID='{$itemID}';";
-                                }
-                                $x=mysqli_query($connect,$itemsql);
-                                $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
-                                <tr>
-                                    <td class="column1"><?php echo $itemrow['ITEM_NAME']?></td>
-                                    <td class="column2"><?php echo $itemrow['ITEM_PRICE']?></td>
-                                </tr>
-                                <?php
-                            }
-                            $url='http://enthalpylogistics.com/Table_Responsive/maestro_batch.php?orderid='.$row['OrderId'];
-                            $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
-                            if($_SESSION['Role']=='maestro' && $row['status']!='Accepted By Maestro') { ?>
-                                <button onclick="window.location.href = '<?php echo $url;?>';">
-                                    Accept</button>
-                                <?php
-                            }
-                            ?>
-                        </table>
-                    </div>
-                    <?php
-
-
-                }?>
-                <h1>Rejected Orders</h1><br>
-                <?php
-                foreach($Rejected as $row){ ?>
-                    <div class="row mb-5">
-                        <table>
-                            <tr>
-                                <th class="column1">OrderID</th>
-                                <th class="column2">Date Ordered</th>
-                                <th class="column3">Name</th>
-                                <th class="column4">Email</th>
-                                <th class="column5">Address</th>
-                                <th class="column6">Headcount</th>
-                                <th class="column7">Delivery Time</th>
-                                <th class="column8">Total</th>
-                                <th class="column9">Status</th>
-                                <th class="column10">Delivery Method</th>
-                            </tr>
-                            <tr>
-                                <td class="column1"><?php echo $row['OrderId']?></td>
-                                <td class="column2"><?php echo $row['Date']?></td>
-                                <td class="column3"><?php echo $row['Name']?></td>
-                                <td class="column4"><?php echo $row['Email']?></td>
-                                <td class="column5"><?php echo $row['Address']?></td>
-                                <td class="column6"><?php echo $row['Headcount']?></td>
-                                <td class="column7"><?php echo $row['deliverytime']?></td>
-                                <td class="column8"><?php echo $row['Total']?></td>
-                                <td class="column9"><?php echo $row['status'];?></td>
-                                <td class="column10"><?php if($row['ByMaestro']==1){
-                                        echo"Maestro";}
-                                    else if($row['ByMaestro']===NULL){ echo $row['ByMaestro'];}
-                                    else{
-                                        echo "Venue";}?></td>
-                            </tr>
-                            <tr>
-
-                                <th class="column2">Name</th>
-                                <th class="column3">Price</th>
-                            </tr>
-                            <?php
-                            $items = explode(",", $row['FullOrder']);
-                            foreach ($items as $itemID) {
-                                $itemsql;
-                                if($_SESSION['ROLE']=='vendor') {
-                                    $itemsql = "SELECT * FROM {$_SESSION['business_name']} WHERE ITEM_ID='{$itemID}';";
-                                }
-                                else{
-                                    $itemsql = "SELECT * FROM Manhattan_Bagel WHERE ITEM_ID='{$itemID}';";
-                                }
-                                $x=mysqli_query($connect,$itemsql);
-                                $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
-                                <tr>
-                                    <td class="column1"><?php echo $itemrow['ITEM_NAME']?></td>
-                                    <td class="column2"><?php echo $itemrow['ITEM_PRICE']?></td>
-                                </tr>
-                                <?php
-                            }
-                            $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/maestro_accept_handler.php?orderid='.$row['OrderId'].'&id='.$_SESSION["id"];
-                            //$url2='http://enthalpylogistics.com/Table_Responsive//ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
-                            if($_SESSION['Role']=='maestro' && $row['status']!='Accepted By Maestro') { ?>
-                                <button onclick="window.location.href = '<?php echo $url;?>';">
-                                    Accept</button>
-                                <?php
-                            }
-                            ?>
-                        </table>
-                    </div>
-                    <?php
-
-
-                }
-                ?>
-
-
-
-
+                
             </div>
 
         </div>
