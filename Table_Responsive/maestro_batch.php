@@ -98,8 +98,10 @@ if(!$status){
                   }
                   $index++;
               }
+              $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/maestro_accept_handler.php?orderid='.$_GET['orderid'];
               if($count_outputted==0){
-                header
+                header('Location: '.$url);
+                 die();
               }
 
                 $Pending=array();
@@ -166,7 +168,8 @@ if(!$status){
                                     </tr>
                                     <?php
                                 }
-                                $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/maestro_accept_handler.php?orderid='.$_GET['orderid'];
+                      			
+                                $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/maestro_accept_handler.php?orderid='.$_GET['orderid'].'&secondorderid='.$row->data['OrderId'];
                                 $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$_GET['orderid'];
                                 if($_SESSION['Role']=='maestro' && $row->data['status']!='Accepted By Maestro') { ?>
                                     <button onclick="window.location.href = '<?php echo $url;?>';">
