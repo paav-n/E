@@ -53,7 +53,7 @@ if(!$status){
                 if($_SESSION['Role']=='admin') {
                     $results="SELECT * FROM orders ORDER BY OrderId DESC";
                 }
-                if($_SESSION['Role']=='vendor') {
+                if($_SESSION['Role']=='venue') {
                     $results="SELECT * FROM orders WHERE Venue='$_SESSION[business_name]' ORDER BY OrderId DESC";
                 }
                 if($_SESSION['Role']=='maestro') {
@@ -74,7 +74,7 @@ if(!$status){
                         array_push($Rejected,$row);
                     }
                 }
-                if($_SESSION['Role']=='admin'or $_SESSION['Role']=='vendor') {?>
+                if($_SESSION['Role']=='admin'or $_SESSION['Role']=='venue') {?>
                     <h1>Pending Orders</h1><br>
                     <?php
                     foreach($Pending as $row){
@@ -118,7 +118,7 @@ if(!$status){
                                 $items = explode(",", $row['FullOrder']);
                                 foreach ($items as $itemID) {
                                     $itemsql;
-                                    if($_SESSION['ROLE']=='vendor') {
+                                    if($_SESSION['ROLE']=='venue') {
                                         $itemsql = "SELECT * FROM {$_SESSION['business_name']} WHERE ITEM_ID='{$itemID}';";
                                     }
                                     else{
@@ -134,7 +134,7 @@ if(!$status){
                                 }
                                 $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/accept_handler.php?orderid='.$row['OrderId'];
                                 $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
-                                if($_SESSION['Role']=='vendor' && $row['status']=='Pending') { ?>
+                                if($_SESSION['Role']=='venue' && $row['status']=='Pending') { ?>
                                     <button onclick="window.location.href = '<?php echo $url;?>';">
                                         Accept</button>
                                     <button onclick="window.location.href = '<?php echo $url2;?>';">
@@ -190,7 +190,7 @@ if(!$status){
                             $items = explode(",", $row['FullOrder']);
                             foreach ($items as $itemID) {
                                 $itemsql;
-                                if($_SESSION['ROLE']=='vendor') {
+                                if($_SESSION['ROLE']=='venue') {
                                     $itemsql = "SELECT * FROM {$_SESSION['business_name']} WHERE ITEM_ID='{$itemID}';";
                                 }
                                 else{
@@ -206,7 +206,7 @@ if(!$status){
                             }
                             $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/accept_handler.php?orderid='.$row['OrderId'];
                             $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
-                            if($_SESSION['Role']=='vendor' && $row['status']=='Pending') { ?>
+                            if($_SESSION['Role']=='venue' && $row['status']=='Pending') { ?>
                                 <button onclick="window.location.href = '<?php echo $url;?>';">
                                     Accept</button>
                                 <button onclick="window.location.href = '<?php echo $url2;?>';">
@@ -262,7 +262,7 @@ if(!$status){
                             $items = explode(",", $row['FullOrder']);
                             foreach ($items as $itemID) {
                                 $itemsql;
-                                if($_SESSION['ROLE']=='vendor') {
+                                if($_SESSION['ROLE']=='venue') {
                                     $itemsql = "SELECT * FROM {$_SESSION['business_name']} WHERE ITEM_ID='{$itemID}';";
                                 }
                                 else{
@@ -278,7 +278,7 @@ if(!$status){
                             }
                             $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/accept_handler.php?orderid='.$row['OrderId'];
                             $url2='http://enthalpylogistics.com/Table_Responsive//ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
-                            if($_SESSION['Role']=='vendor' && $row['status']=='Pending') { ?>
+                            if($_SESSION['Role']=='venue' && $row['status']=='Pending') { ?>
                                 <button onclick="window.location.href = '<?php echo $url;?>';">
                                     Accept</button>
                                 <button onclick="window.location.href = '<?php echo $url2;?>';">
