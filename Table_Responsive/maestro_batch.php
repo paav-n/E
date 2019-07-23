@@ -56,12 +56,11 @@ if(!$status){
               	$address=$row['Address'];
               	$datetime=$row['deliverytime'];
               	$datetest=date("Y-m-d", strtotime($row["deliverytime"]));
-              	$results="SELECT * FROM orders WHERE ((Date(deliverytime)='$datetest' and status='Accepted') 
-                and (TIMEDIFF(deliverytime,'$datetime')<'01:00:00'or TIMEDIFF(deliverytime,'$datetime')>'-01:00:00'))";          
+              	$results="SELECT * FROM orders WHERE ((Date(deliverytime)='$datetest' and status='Accepted')";        
               	$t=mysqli_query($connect,$results);
               $destinations='';
+              $intermediate=array();
               while($row = mysqli_fetch_array($t, MYSQLI_ASSOC)) {
-
                   $destinations.=urlencode($row['Address']);
                   $destinations.='|';
               }
@@ -81,9 +80,7 @@ if(!$status){
                   public $data;
                   public $distance;
               }
-
-              $newresults ="SELECT * FROM orders WHERE ((Date(deliverytime)='$datetest' and status='Accepted') 
-                and (TIMEDIFF(deliverytime,'$datetime')<'01:00:00'or TIMEDIFF(deliverytime,'$datetime')>'-01:00:00'))";
+              $newresults ="SELECT * FROM orders WHERE (Date(deliverytime)='$datetest' and status='Accepted')";
               $new=mysqli_query($connect,$newresults);
               $eaterieswithdistances=array();
               $index=0;
@@ -92,11 +89,15 @@ if(!$status){
                   $temp=new eateries;
                   $temp->data=$newrow;
                   $temp->distance=$resp['rows'][0]['elements'][$index]['duration']['value'];
-                  if($temp->distance/60<60) {
-                      array_push($eaterieswithdistances, $temp);
-                    	$count_outputted++;
-                  }
+                  $query="Select TIMEDIFF(deliverytime,$datetime) where OrderId=$newrow[OrderId]";
+                $n=mysqli_query($connect,$query);
+                $time = mysqli_fetch_array($n, MYSQLI_NUM);
+                $minutes= date('i', strtotime($time[0]));
+                if(abs($minutes-$temp->distance)<25){
+                  $count_outputted++;
+                  array_push($eaterieswithdistances,$temp);
                   $index++;
+                }
               }
               $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/maestro_accept_handler.php?orderid='.$_GET['orderid'];
               if($count_outputted==0){
