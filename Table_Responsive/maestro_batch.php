@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 session_set_cookie_params(0,"/E");
 $status= $_SESSION["Logged"];
@@ -56,7 +57,7 @@ if(!$status){
               	$address=$row['Address'];
               	$datetime=$row['deliverytime'];
               	$datetest=date("Y-m-d", strtotime($row["deliverytime"]));
-              	$results="SELECT * FROM orders WHERE ((Date(deliverytime)='$datetest' and status='Accepted')";        
+              	$results="SELECT * FROM orders WHERE (Date(deliverytime)='$datetest' and status='Accepted' and OrderId!=$_GET[orderid])";        
               	$t=mysqli_query($connect,$results);
               $destinations='';
               $intermediate=array();
@@ -80,7 +81,7 @@ if(!$status){
                   public $data;
                   public $distance;
               }
-              $newresults ="SELECT * FROM orders WHERE (Date(deliverytime)='$datetest' and status='Accepted')";
+              $newresults ="SELECT * FROM orders WHERE (Date(deliverytime)='$datetest' and status='Accepted'and OrderId!=$_GET[orderid])";
               $new=mysqli_query($connect,$newresults);
               $eaterieswithdistances=array();
               $index=0;
@@ -101,6 +102,7 @@ if(!$status){
               }
               $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/maestro_accept_handler.php?orderid='.$_GET['orderid'];
               if($count_outputted==0){
+                echo "Redirect";
                 header('Location: '.$url);
                  die();
               }
@@ -170,7 +172,7 @@ if(!$status){
                                     <?php
                                 }
                       			
-                                $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/maestro_accept_handler.php?orderid='.$_GET['orderid'].'&secondorderid='.$row->data['OrderId'];
+                                $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/maestro_accept_handler.php?batch=1&orderid='.$_GET['orderid'].'&secondorderid='.$row->data['OrderId'];
                                 $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$_GET['orderid'];
                                 if($_SESSION['Role']=='maestro' && $row->data['status']!='Accepted By Maestro') { ?>
                                     <button onclick="window.location.href = '<?php echo $url;?>';">
