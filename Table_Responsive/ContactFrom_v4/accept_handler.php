@@ -97,13 +97,27 @@ if (mysqli_connect_errno()) {
 }
 mysqli_select_db($connect, $database);
 if(isset($_POST['submit'])){
+  if($_GET['batch']==1){
     $orderid=$_GET['orderid'];
     $updatestatement="Update orders set status='Accepted', ByMaestro='$_POST[method]' where OrderId=$orderid";
+    echo $updatestatement;
+    $secondorderid=$_GET['secondorderid'];
+    $updatestatement="Update orders set status='Accepted', ByMaestro='$_POST[method]' where OrderId=$secondorderid";
     echo $updatestatement;
     if($connect->query($updatestatement)){
         header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
         die();
     }
+  }
+     else{
+       $secondorderid=$_GET['orderid'];
+    $updatestatement="Update orders set status='Accepted', ByMaestro='$_POST[method]' where OrderId=$secondorderid";
+    echo $updatestatement;
+    if($connect->query($updatestatement)){
+        header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
+        die();
+    }
+     }
 }
 ?>
 
