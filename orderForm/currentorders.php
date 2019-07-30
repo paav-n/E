@@ -43,7 +43,7 @@ if(!$status){
           <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
             <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
               <li class="nav-item">
-                <a class="nav-link active" href="../search/index.html">Home</a>
+                <a class="nav-link active" href="index.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../orderForm/currentorders.php">Orders</a>
@@ -57,6 +57,7 @@ if(!$status){
               </li>
               -->
             </ul>
+
           </div>
         </div>
       </nav>
