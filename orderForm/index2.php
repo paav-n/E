@@ -108,6 +108,7 @@ mysqli_select_db($connect, $database);
 <h2 class="ml-3"><?php echo $n['ITEM_SECTION2']?></h2>
 <?php
 $results = "SELECT * FROM '{$venue}' WHERE ITEM_SECTION2=$n['ITEM_SECTION2']";
+
 $w=mysqli_query($connect,$results);
 while($row = $w->fetch_array(MYSQLI_ASSOC)) {
                         ?>

@@ -58,15 +58,15 @@ if ($response == 'true'){
         header('Location: http://enthalpylogistics.com/search/index.html');
         die();
     }
-    if ($therole == "venue"){
+    if ($therole == "venue") {
         $_SESSION["Logged"] = true;
-        $_SESSION['email']=$rowe[1];
+        $_SESSION['email'] = $rowe[1];
         $_SESSION["Role"] = "venue";
-        $_SESSION['id']=array();
-        $_SESSION['name']=array();
-        $_SESSION['price']=array();
-        $_SESSION['business_name']=$rowe[2];
-        $_SESSION['edit']=array();
+        $_SESSION['id'] = array();
+        $_SESSION['name'] = array();
+        $_SESSION['price'] = array();
+        $_SESSION['business_name'] = $rowe[2];
+        $_SESSION['edit'] = array();
         header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
         die();
     }
@@ -81,7 +81,7 @@ if ($response == 'true'){
         $_SESSION["Logged"] = true;
         $_SESSION["id"]=$rowe[3];
 
-        $url='Location: http://enthalpylogistics.com/Table_Responsive/accept_handler.php';
+        $url='Location: http://enthalpylogistics.com/Table_Responsive/maestro_index.php';
         header($url);
         die();
     }
