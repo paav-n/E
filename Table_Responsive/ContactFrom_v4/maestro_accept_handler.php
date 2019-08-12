@@ -92,13 +92,43 @@ if (mysqli_connect_errno()) {
 }
 mysqli_select_db($connect, $database);
 if(isset($_POST['submit'])){
-    $orderid=$_GET['orderid'];
-    echo "<script type='text/javascript'>alert($_SESSION[id]);</script>";
-    $updatestatement="Update orders set status='Accepted By Maestro', Maestro=$_SESSION[id] where OrderId=$orderid";
-    echo $updatestatement;
-    if($connect->query($updatestatement)){
-        header('Location: http://enthalpylogistics.com/Table_Responsive/accept_handler.php');
-        die();
+    if($_GET['batch']==1){
+        $orderid=$_GET['orderid'];
+        $quer="Select * from orders where OrderId=$orderid";
+        $overwrite=$connect->query($quer);
+        $row = $overwrite->fetch_array(MYSQLI_ASSOC);
+        if($row['status']!='Accpeted by Maestro'){
+            $updatestatement="Update orders set status='Accepted By Maestro', Maestro=$_SESSION[id] where OrderId=$orderid";
+            if($connect->query($updatestatement)){
+
+            }
+        }
+        $secondorderid=$_GET['secondorderid'];
+        $quer="Select * from orders where OrderId=$secondorderid";
+        $overwrite=$connect->query($quer);
+        $row = $overwrite->fetch_array(MYSQLI_ASSOC);
+        if($row['status']!='Accpeted by Maestro'){
+            $updatestatement="Update orders set status='Accepted By Maestro', Maestro=$_SESSION[id] where OrderId=$secondorderid";
+            echo $updatestatement;
+            if($connect->query($updatestatement)){
+                header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
+                die();
+            }
+        }
+    }
+    else{
+        $orderid=$_GET['orderid'];
+        $quer="Select * from orders where OrderId=$orderid";
+        $overwrite=$connect->query($quer);
+        $row = $overwrite->fetch_array(MYSQLI_ASSOC);
+        if($row['status']!='Accpeted by Maestro'){
+            $updatestatement="Update orders set status='Accepted By Maestro', Maestro=$_SESSION[id] where OrderId=$orderid";
+            echo $updatestatement;
+            if($connect->query($updatestatement)){
+                header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
+                die();
+            }
+        }
     }
 }
 ?>

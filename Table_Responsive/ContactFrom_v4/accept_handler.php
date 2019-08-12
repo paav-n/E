@@ -109,14 +109,14 @@ if(isset($_POST['submit'])){
         die();
     }
   }
-     else{
-       $secondorderid=$_GET['orderid'];
-    $updatestatement="Update orders set status='Accepted', ByMaestro='$_POST[method]' where OrderId=$secondorderid";
-    echo $updatestatement;
-    if($connect->query($updatestatement)){
-        header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
-        die();
-    }
+     else {
+         $secondorderid = $_GET['orderid'];
+         $updatestatement = "Update orders set status='Accepted', ByMaestro='$_POST[method]' where OrderId=$secondorderid";
+         echo $updatestatement;
+         if ($connect->query($updatestatement)) {
+             header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
+             die();
+         }
      }
 }
 ?>
