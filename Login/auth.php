@@ -55,7 +55,7 @@ if ($response == 'true'){
         $_SESSION['name']=array();
         $_SESSION['price']=array();
         $_SESSION['edit']=array();
-        header('Location: http://enthalpylogistics.com/search/index.html');
+        header('Location: https://enthalpylogistics.com/search/index.html');
         die();
     }
     if ($therole == "venue") {
@@ -67,13 +67,13 @@ if ($response == 'true'){
         $_SESSION['price'] = array();
         $_SESSION['business_name'] = $rowe[2];
         $_SESSION['edit'] = array();
-        header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
+        header('Location: https://enthalpylogistics.com/Table_Responsive/index.php');
         die();
     }
     if ($therole == "admin"){
         $_SESSION["Role"] = "admin";
         $_SESSION["Logged"] = true;
-        header('Location: http://enthalpylogistics.com/Table_Responsive/index.php');
+        header('Location: https://enthalpylogistics.com/Table_Responsive/index.php');
         die();
     }
     if ($therole == "maestro"){
@@ -81,7 +81,7 @@ if ($response == 'true'){
         $_SESSION["Logged"] = true;
         $_SESSION["id"]=$rowe[3];
 
-        $url='Location: http://enthalpylogistics.com/Table_Responsive/maestro_index.php';
+        $url='Location: https://enthalpylogistics.com/Table_Responsive/maestro_index.php';
         header($url);
         die();
     }
@@ -91,7 +91,7 @@ if ($response == 'true'){
 
 if (is_null($therole)){
     echo"Not Logged In<br>";
-    header('Location: http://enthalpylogistics.com/');
+    header('Location: https://enthalpylogistics.com/');
     die();
 }
 

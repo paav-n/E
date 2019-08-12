@@ -301,7 +301,24 @@
                                         </div>
                                         <div class="beds">
                                             <p>Rating</p>
-                                            <img src="img/onestar.png" alt="">
+                                            <?php
+                                            if(($value->data['rating'])=='1'){
+                                                echo "<img src=\"img/onestar.png\" alt=\"\">";
+
+                                            }
+                                            else if(($value->data['rating'])=='2'){
+                                                echo "<img src=\"img/twostar.png\" alt=\"\">";
+                                            }
+                                            else if(($value->data['rating'])=='3'){
+                                                echo "<img src=\"img/threestar.png\" alt=\"\">";
+                                            }
+                                            else if(($value->data['rating'])=='4'){
+                                                echo "<img src=\"img/fourstar.png\" alt=\"\">";
+                                            }
+                                            else{
+                                                echo "<img src=\"img/fivestar.png\" alt=\"\">";
+                                            }
+                                            ?>
                                         </div>
                                         <div class="room-price">
                                             <br>
