@@ -1,319 +1,219 @@
-<?php
-session_start();
-session_set_cookie_params(0,"/E");
-$status= $_SESSION["Logged"];
-if(!$status){
-    echo"Not Logged In<br>";
-    header('Location: http://enthalpylogistics.com/');
-    die();
-}
-?>
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Order Table</title>
-    <meta charset="UTF-8">
+    <title>Manhattan Bagel</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="../img/Polaxicon.png"/>
-    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <!--===============================================================================================-->
+    <meta charset="UTF-8">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/beyond_the_mountains-webfont.css" type="text/css"/>
+
+    <!-- Stylesheets -->
+    <link href="plugin-frameworks/bootstrap.min.css" rel="stylesheet">
+    <link href="plugin-frameworks/swiper.css" rel="stylesheet">
+    <link href="fonts/ionicons.css" rel="stylesheet">
+    <link href="common/styles.css" rel="stylesheet">
+
 </head>
 <body>
 
-<div class="limiter">
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table100">
-                <?php
-                $host_name = 'db777190816.hosting-data.io';
-                $database = 'db777190816';
-                $user_name = 'dbo777190816';
-                $password = 'Singhi1234!';
+<header>
+    <div class="container">
+        <a class="logo" href="#"><img src="images/logo-white.png" alt="Logo"></a>
 
-                $connect = mysqli_connect($host_name, $user_name, $password, $database);
-                if (mysqli_connect_errno()) {
-                    die('<p>Failed to connect to MySQL: '.mysqli_error().'</p>');
-                }
-                mysqli_select_db($connect, $database);
-                $results;
-                if($_SESSION['Role']=='admin') {
-                    $results="SELECT * FROM orders ORDER BY OrderId DESC";
-                }
-                if($_SESSION['Role']=='venue') {
-                    $results="SELECT * FROM orders WHERE Venue='$_SESSION[business_name]' ORDER BY OrderId DESC";
-                }
-                if($_SESSION['Role']=='maestro') {
-                    $results="SELECT * FROM orders WHERE ByMaestro= 1 ORDER BY OrderId DESC";
-                }
-                $w=mysqli_query($connect,$results);
-                $Pending=array();
-                $Accepted=array();
-                $Rejected=array();
-                while($row = $w->fetch_array(MYSQLI_ASSOC)) {
-                    if($row['status']=='Pending'){
-                        array_push($Pending,$row);
-                    }
-                    else if($row['status']=='Accepted'){
-                        array_push($Accepted,$row);
-                    }
-                    else{
-                        array_push($Rejected,$row);
-                    }
-                }
-                if($_SESSION['Role']=='admin'or $_SESSION['Role']=='venue') {?>
-                    <h1>Pending Orders</h1><br>
-                    <?php
-                    foreach($Pending as $row){
-                        ?>
-                        <div class="row mb-5">
-                            <table>
-                                <tr>
-                                    <th class="column1">OrderID</th>
-                                    <th class="column2">Date Ordered</th>
-                                    <th class="column3">Name</th>
-                                    <th class="column4">Email</th>
-                                    <th class="column5">Address</th>
-                                    <th class="column6">Headcount</th>
-                                    <th class="column7">Delivery Time</th>
-                                    <th class="column8">Total</th>
-                                    <th class="column9">Status</th>
-                                    <th class="column10">Delivery Method</th>
-                                </tr>
-                                <tr>
-                                    <td class="column1"><?php echo $row['OrderId']?></td>
-                                    <td class="column2"><?php echo $row['Date']?></td>
-                                    <td class="column3"><?php echo $row['Name']?></td>
-                                    <td class="column4"><?php echo $row['Email']?></td>
-                                    <td class="column5"><?php echo $row['Address']?></td>
-                                    <td class="column6"><?php echo $row['Headcount']?></td>
-                                    <td class="column7"><?php echo $row['deliverytime']?></td>
-                                    <td class="column8"><?php echo $row['Total']?></td>
-                                    <td class="column9"><?php echo $row['status'];?></td>
-                                    <td class="column10"><?php if($row['ByMaestro']==1){
-                                            echo"Maestro";}
-                                        else if($row['ByMaestro']===NULL){ echo $row['ByMaestro'];}
-                                        else{
-                                            echo "Venue";}?></td>
-                                </tr>
-                                <tr>
+        <div class="right-area">
+            <h6><a class="plr-20 color-white btn-fill-primary" href="#">ORDER: +34 685 778 8892</a></h6>
+        </div><!-- right-area -->
 
-                                    <th class="column2">Name</th>
-                                    <th class="column3">Price</th>
-                                </tr>
-                                <?php
-                                $items = explode(",", $row['FullOrder']);
-                                foreach ($items as $itemID) {
-                                    $itemsql;
-                                    if($_SESSION['ROLE']=='venue') {
-                                        $itemsql = "SELECT * FROM {$_SESSION['business_name']} WHERE ITEM_ID='{$itemID}';";
-                                    }
-                                    else{
-                                        $itemsql = "SELECT * FROM Manhattan_Bagel WHERE ITEM_ID='{$itemID}';";
-                                    }
-                                    $x=mysqli_query($connect,$itemsql);
-                                    $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
-                                    <tr>
-                                        <td class="column1"><?php echo $itemrow['ITEM_NAME']?></td>
-                                        <td class="column2"><?php echo $itemrow['ITEM_PRICE']?></td>
-                                    </tr>
-                                    <?php
-                                }
-                                $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/accept_handler.php?orderid='.$row['OrderId'];
-                                $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
-                                if($_SESSION['Role']=='venue' && $row['status']=='Pending') { ?>
-                                    <button onclick="window.location.href = '<?php echo $url;?>';">
-                                        Accept</button>
-                                    <button onclick="window.location.href = '<?php echo $url2;?>';">
-                                        Reject</button>
-                                    <?php
-                                }
-                                ?>
-                            </table>
-                        </div>
-                        <?php
+        <a class="menu-nav-icon" data-menu="#main-menu" href="#"><i class="ion-navicon"></i></a>
 
-                    }
-                }?>
-                <h1>Accepted Orders</h1><br>
-                <?php
-                foreach($Accepted as $row){ ?>
-                    <div class="row mb-5">
-                        <table>
-                            <tr>
-                                <th class="column1">OrderID</th>
-                                <th class="column2">Date Ordered</th>
-                                <th class="column3">Name</th>
-                                <th class="column4">Email</th>
-                                <th class="column5">Address</th>
-                                <th class="column6">Headcount</th>
-                                <th class="column7">Delivery Time</th>
-                                <th class="column8">Total</th>
-                                <th class="column9">Status</th>
-                                <th class="column10">Delivery Method</th>
-                            </tr>
-                            <tr>
-                                <td class="column1"><?php echo $row['OrderId']?></td>
-                                <td class="column2"><?php echo $row['Date']?></td>
-                                <td class="column3"><?php echo $row['Name']?></td>
-                                <td class="column4"><?php echo $row['Email']?></td>
-                                <td class="column5"><?php echo $row['Address']?></td>
-                                <td class="column6"><?php echo $row['Headcount']?></td>
-                                <td class="column7"><?php echo $row['deliverytime']?></td>
-                                <td class="column8"><?php echo $row['Total']?></td>
-                                <td class="column9"><?php echo $row['status'];?></td>
-                                <td class="column10"><?php if($row['ByMaestro']==1){
-                                        echo"Maestro";}
-                                    else if($row['ByMaestro']===NULL){ echo $row['ByMaestro'];}
-                                    else{
-                                        echo "Venue";}?></td>
-                            </tr>
-                            <tr>
+        <ul class="main-menu font-mountainsre" id="main-menu">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="02_about_us.html">ABOUT US</a></li>
+            <li><a href="03_menu.html">SERVICES</a></li>
+            <li><a href="04_blog.html">NEWS</a></li>
+            <li><a href="05_contact.html">CONTACT</a></li>
+        </ul>
 
-                                <th class="column2">Name</th>
-                                <th class="column3">Price</th>
-                            </tr>
-                            <?php
-                            $items = explode(",", $row['FullOrder']);
-                            foreach ($items as $itemID) {
-                                $itemsql;
-                                if($_SESSION['ROLE']=='venue') {
-                                    $itemsql = "SELECT * FROM {$_SESSION['business_name']} WHERE ITEM_ID='{$itemID}';";
-                                }
-                                else{
-                                    $itemsql = "SELECT * FROM Manhattan_Bagel WHERE ITEM_ID='{$itemID}';";
-                                }
-                                $x=mysqli_query($connect,$itemsql);
-                                $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
-                                <tr>
-                                    <td class="column1"><?php echo $itemrow['ITEM_NAME']?></td>
-                                    <td class="column2"><?php echo $itemrow['ITEM_PRICE']?></td>
-                                </tr>
-                                <?php
-                            }
-                            $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/accept_handler.php?orderid='.$row['OrderId'];
-                            $url2='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
-                            if($_SESSION['Role']=='venue' && $row['status']=='Pending') { ?>
-                                <button onclick="window.location.href = '<?php echo $url;?>';">
-                                    Accept</button>
-                                <button onclick="window.location.href = '<?php echo $url2;?>';">
-                                    Reject</button>
-                                <?php
-                            }
-                            ?>
-                        </table>
-                    </div>
-                    <?php
+        <div class="clearfix"></div>
+    </div><!-- container -->
+</header>
 
 
-                }?>
-                <h1>Rejected Orders</h1><br>
-                <?php
-                foreach($Rejected as $row){ ?>
-                    <div class="row mb-5">
-                        <table>
-                            <tr>
-                                <th class="column1">OrderID</th>
-                                <th class="column2">Date Ordered</th>
-                                <th class="column3">Name</th>
-                                <th class="column4">Email</th>
-                                <th class="column5">Address</th>
-                                <th class="column6">Headcount</th>
-                                <th class="column7">Delivery Time</th>
-                                <th class="column8">Total</th>
-                                <th class="column9">Status</th>
-                                <th class="column10">Delivery Method</th>
-                            </tr>
-                            <tr>
-                                <td class="column1"><?php echo $row['OrderId']?></td>
-                                <td class="column2"><?php echo $row['Date']?></td>
-                                <td class="column3"><?php echo $row['Name']?></td>
-                                <td class="column4"><?php echo $row['Email']?></td>
-                                <td class="column5"><?php echo $row['Address']?></td>
-                                <td class="column6"><?php echo $row['Headcount']?></td>
-                                <td class="column7"><?php echo $row['deliverytime']?></td>
-                                <td class="column8"><?php echo $row['Total']?></td>
-                                <td class="column9"><?php echo $row['status'];?></td>
-                                <td class="column10"><?php if($row['ByMaestro']==1){
-                                        echo"Maestro";}
-                                    else if($row['ByMaestro']===NULL){ echo $row['ByMaestro'];}
-                                    else{
-                                        echo "Venue";}?></td>
-                            </tr>
-                            <tr>
+<section class="bg-1 h-900x main-slider pos-relative">
+    <div class="triangle-up pos-bottom"></div>
+    <div class="container h-100">
+        <div class="dplay-tbl">
+            <div class="dplay-tbl-cell center-text color-white">
 
-                                <th class="column2">Name</th>
-                                <th class="column3">Price</th>
-                            </tr>
-                            <?php
-                            $items = explode(",", $row['FullOrder']);
-                            foreach ($items as $itemID) {
-                                $itemsql;
-                                if($_SESSION['ROLE']=='venue') {
-                                    $itemsql = "SELECT * FROM {$_SESSION['business_name']} WHERE ITEM_ID='{$itemID}';";
-                                }
-                                else{
-                                    $itemsql = "SELECT * FROM Manhattan_Bagel WHERE ITEM_ID='{$itemID}';";
-                                }
-                                $x=mysqli_query($connect,$itemsql);
-                                $itemrow = $x->fetch_array(MYSQLI_ASSOC) ?>
-                                <tr>
-                                    <td class="column1"><?php echo $itemrow['ITEM_NAME']?></td>
-                                    <td class="column2"><?php echo $itemrow['ITEM_PRICE']?></td>
-                                </tr>
-                                <?php
-                            }
-                            $url='http://enthalpylogistics.com/Table_Responsive/ContactFrom_v4/accept_handler.php?orderid='.$row['OrderId'];
-                            $url2='http://enthalpylogistics.com/Table_Responsive//ContactFrom_v4/reject_handler.php?orderid='.$row['OrderId'];
-                            if($_SESSION['Role']=='venue' && $row['status']=='Pending') { ?>
-                                <button onclick="window.location.href = '<?php echo $url;?>';">
-                                    Accept</button>
-                                <button onclick="window.location.href = '<?php echo $url2;?>';">
-                                    Reject</button>
-                                <?php
-                            }
-                            ?>
-                        </table>
-                    </div>
-                    <?php
+                <h5><b>BEST IN TOWN</b></h5>
+                <h1 class="mt-30 mb-15">Pizza & Pasta</h1>
+                <h5><a href="#" class="btn-primaryc plr-25"><b>SEE TODAYS MENU</b></a></h5>
+            </div><!-- dplay-tbl-cell -->
+        </div><!-- dplay-tbl -->
+    </div><!-- container -->
+</section>
 
+<?php
+session_start();
+?>
+<?php
+$host_name = 'db777190816.hosting-data.io';
+$database = 'db777190816';
+$user_name = 'dbo777190816';
+$password = 'Singhi1234!';
 
-                }
-                ?>
+$connect = mysqli_connect($host_name, $user_name, $password, $database);
+if (mysqli_connect_errno()) {
+    die('<p>Failed to connect to MySQL: '.mysqli_error().'</p>');
+}
+mysqli_select_db($connect, $database);
+$results="SELECT * from Manhattan_Bagel";
+$w=mysqli_query($connect,$results);
 
+?>
 
-
-
-            </div>
-
+<section class="story-area bg-seller color-white pos-relative">
+    <div class="pos-bottom triangle-up"></div>
+    <div class="pos-top triangle-bottom"></div>
+    <div class="container">
+        <div class="heading">
+            <img class="heading-img" src="images/heading_logo.png" alt="">
+            <h2>Best Sellers</h2>
         </div>
-    </div>
-</div>
+
+        <div class="row">
+            <?php
+            for( $i=0;$i<8;$i++){
+                $row = $w->fetch_array(MYSQLI_ASSOC);
+                ?>
+                <div class="col-lg-3 col-md-4  col-sm-6 ">
+                    <div class="center-text mb-30">
+                        <h5 class="mt-20"><?php echo $row['ITEM_NAME'];?></h5>
+                        <h4 class="mt-5"><b><?php echo $row['ITEM_PRICE'];?></b></h4>
+                        <h6 class="mt-20"><a href="#" class="btn-brdr-primary plr-25"><b>Add To Cart</b></a></h6>
+                    </div><!--text-center-->
+                </div><!-- col-md-3 -->
+
+                <?php
+            }
+            ?>
+        </div><!-- row -->
+
+        <h6 class="center-text mt-40 mt-sm-20 mb-30"><a href="#" class="btn-primaryc plr-25"><b>SEE TODAYS MENU</b></a></h6>
+    </div><!-- container -->
+</section>
 
 
+<section>
+    <div class="container">
+        <div class="heading">
+            <img class="heading-img" src="images/heading_logo.png" alt="">
+            <h2>Menu</h2>
+        </div>
+        <?php
+        $results2="SELECT * from Manhattan_Bagel";
+        $t=mysqli_query($connect,$results2);
+        $categories=array();
+        while($row = $t->fetch_array(MYSQLI_ASSOC)) {
+            $add=true;
+            foreach ($categories as $item){
+                if($row[ITEM_SECTION2]==$item){
+                    $add=false;
+                }
+            }
+            if($add==true){
+                array_push($categories,$row[ITEM_SECTION2]);
+            }
+        }
+        ?>
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="selecton brdr-b-primary mb-70">
+                    <li><a class="active" href="#" data-select="*"><b>ALL</b></a></li>
+                    <?php foreach($categories as $it){
+                        $it=str_replace(' ','',$it);?>
 
-<!--===============================================================================================-->
-<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/bootstrap/js/popper.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="js/main.js"></script>
+                        <li><a href="#" data-select="<?php echo $it;?>"><b>
+                                    <?php $it=str_replace(' ','',$it);echo $it;?></b></a></li>
+                    <?php }?>
+                </ul>
+            </div><!--col-sm-12-->
+        </div><!--row-->
+
+        <div class="row">
+            <?php $results3="SELECT * from Manhattan_Bagel";
+            $s=mysqli_query($connect,$results3);
+            while($row = $s->fetch_array(MYSQLI_ASSOC)) {
+                ?>
+                <div class="col-md-6 food-menu <?php $ech=str_replace(' ', '',$row[ITEM_SECTION2]);echo $ech;?>">
+
+                    <div class="sided-90x mb-30 ">
+                        <div class="s-right">
+                            <h5 class="mb-10"><b><?php echo $row['ITEM_NAME'];?></b><b class="color-primary float-right"><?php echo $row['ITEM_PRICE'];?></b></h5>
+                            <p class="pr-70"><?php echo $row['ITEM_DESCRIPTION'];?></p>
+                        </div><!--s-right-->
+                    </div><!-- sided-90x -->
+                </div><!-- food-menu -->
+
+            <?php } ?>
+            <div class="col-md-6 food-menu test">
+
+                <div class="sided-90x mb-30 ">
+                    <div class="s-right">
+                        <h5 class="mb-10"><b><?php echo "Test";?></b><b class="color-primary float-right"><?php echo "test";?></b></h5>
+                        <p class="pr-70"><?php echo "test";?></p>
+                    </div><!--s-right-->
+                </div><!-- sided-90x -->
+            </div>
+        </div><!-- row -->
+
+        <h6 class="center-text mt-40 mt-sm-20 mb-30"><a href="#" class="btn-primaryc plr-25"><b>SEE TODAYS MENU</b></a></h6>
+    </div><!-- container -->
+</section>
+
+<footer class="pb-50  pt-70 pos-relative">
+    <div class="pos-top triangle-bottom"></div>
+    <div class="container-fluid">
+        <a href="index.html"><img src="images/logo-white.png" alt="Logo"></a>
+
+        <div class="pt-30">
+            <p class="underline-secondary"><b>Address:</b></p>
+            <p>481 Creekside Lane Avila Beach, CA 93424 </p>
+        </div>
+
+        <div class="pt-30">
+            <p class="underline-secondary mb-10"><b>Phone:</b></p>
+            <a href="tel:+53 345 7953 32453 ">+53 345 7953 32453 </a>
+        </div>
+
+        <div class="pt-30">
+            <p class="underline-secondary mb-10"><b>Email:</b></p>
+            <a href="mailto:yourmail@gmail.com"> yourmail@gmail.com</a>
+        </div>
+
+        <ul class="icon mt-30">
+            <li><a href="#"><i class="ion-social-pinterest"></i></a></li>
+            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+            <li><a href="#"><i class="ion-social-dribbble-outline"></i></a></li>
+            <li><a href="#"><i class="ion-social-linkedin"></i></a></li>
+            <li><a href="#"><i class="ion-social-vimeo"></i></a></li>
+        </ul>
+
+        <p class="color-light font-9 mt-50 mt-sm-30"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ion-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+    </div><!-- container -->
+</footer>
+
+<!-- SCIPTS -->
+<script src="plugin-frameworks/jquery-3.2.1.min.js"></script>
+<script src="plugin-frameworks/bootstrap.min.js"></script>
+<script src="plugin-frameworks/swiper.js"></script>
+<script src="common/scripts.js"></script>
 
 </body>
 </html>
