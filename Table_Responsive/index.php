@@ -118,13 +118,13 @@ $w=mysqli_query($connect,$results);
         $t=mysqli_query($connect,$results2);
         $categories=array();
         while($row = $t->fetch_array(MYSQLI_ASSOC)) {
-            $add=true;
+            $adds=true;
             foreach ($categories as $item){
                 if($row[ITEM_SECTION2]==$item){
-                    $add=false;
+                    $adds=false;
                 }
             }
-            if($add==true){
+            if($adds==true){
                 array_push($categories,$row[ITEM_SECTION2]);
             }
         }
