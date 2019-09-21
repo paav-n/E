@@ -128,6 +128,21 @@ textarea:focus { outline-color: #EF0031; }
 3. HEADER
 --------------------------------- */
 
+btn{
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+}
+
+hide{
+        display: none;
+}
+
 header {
         position: absolute;
         top: 0;
@@ -166,6 +181,19 @@ header:before {
 
 header i {
         font-size: 1.1em;
+}
+
+.checkout{
+        position: fixed;
+        background-color: #FF0000; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-decoration: none;
+        top:0;
+        right:0;
+        font-size: 16px;
+
 }
 
 /* BOTTOM HEADER */

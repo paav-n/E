@@ -19,38 +19,31 @@
 </head>
 
 <script>
-    var items=new array();
+    var items=new Array();
 </script>
 
 <body>
 
 <header>
-    <div class="container">
-        <a class="logo" href="#"><img src="images/logo-white.png" alt="Logo"></a>
 
-        <div class="right-area">
-            <h6><a class="plr-20 color-white btn-fill-primary" href="#">ORDER: +34 685 778 8892</a></h6>
-        </div><!-- right-area -->
 
-        <a class="menu-nav-icon" data-menu="#main-menu" href="#"><i class="ion-navicon"></i></a>
+    <form action="" method="get" id="form1">
+        <input type="hidden" id="items" name="items" value=""><br>
+        <input type="hidden" name="venue_id" value="5"><br>
+    </form>
+    <button class="checkout" onclick="checkout()" type="submit" form="form1" value="Submit">Checkout</button>
+    <script type="text/javascript">
+        function checkout(){
+            document.getElementById("items").value = JSON.stringify(items);
+            alert(document.getElementById("items").value);
+        }
 
-        <ul class="main-menu font-mountainsre" id="main-menu">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="02_about_us.html">ABOUT US</a></li>
-            <li><a href="03_menu.html">SERVICES</a></li>
-            <li><a href="04_blog.html">NEWS</a></li>
-            <li><a href="05_contact.html">CONTACT</a></li>
-        </ul>
+    </script>
 
-        <div class="clearfix"></div>
-    </div><!-- container -->
+
+
 </header>
 
-<form action="#" method="post" id="form1">
-    <input type="hidden" name="items"><br>
-</form>
-
-<button class ="fix" type="submit" form="form1" value="Submit">Submit</button>
 
 <section class="bg-1 h-900x main-slider pos-relative">
     <div class="triangle-up pos-bottom"></div>
@@ -86,6 +79,8 @@ $w=mysqli_query($connect,$results);
 ?>
 
 <section class="story-area bg-seller color-white pos-relative">
+
+
     <div class="pos-bottom triangle-up"></div>
     <div class="pos-top triangle-bottom"></div>
     <div class="container">
@@ -169,7 +164,7 @@ $w=mysqli_query($connect,$results);
                     <button onclick="push<?php echo $row[ITEM_ID];?>()">Add To Cart</button>
                     <script type="text/javascript">
                         function push<?php echo $row[ITEM_ID];?>(){
-
+                            items.push(<?php echo $row[ITEM_ID];?>);
                             alert("<?php echo $row[ITEM_NAME]?> was added to your cart");
                         }
                     </script>
