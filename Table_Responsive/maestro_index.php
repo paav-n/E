@@ -32,9 +32,38 @@ if(!$status){
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
 </head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script>
+    var first=0;
+    var second=0;
+
+    function query(){
+        $.post( "query.php", { 'choices[]': [ "Jon", "Susan" ] },
+            function( data ) {
+                alert(data);
+                var obj=JSON.parse(data);
+                for(var i=0;i<obj.length;i++){
+                    alert(obj[i]);
+                    var val="#";
+                    var final=val.concat(obj[i]);
+                    alert(final);
+                    $(final).css('border', '1px solid black');
+                }
+            }
+        );
+    };
+
+    function aler(){
+        alert("rec");
+    };
+</script>
 <body>
 
 <div class="limiter">
+    <button onclick="query()">Confirm</button>
     <div class="container-table100">
         <div class="wrap-table100">
             <div class="table100">
@@ -70,7 +99,7 @@ if(!$status){
                     <?php
                     foreach($Pending as $row){
                         ?>
-                        <div class="row mb-5">
+                        <div id="<?php echo $row['OrderId'];?>" class="row mb-5">
                             <table>
                                 <tr>
                                     <th class="column1">OrderID</th>
