@@ -75,8 +75,8 @@ else{
         $interval = $date2 - $date1;
         $minutes = $interval / 60;
 
-        $diff=((int)$temp->distance/60)-$minutes;
-        if($diff<60 and $diff>20){
+        $diff=abs(((int)$temp->distance/60)-$minutes);
+        if($diff<60){
             $count_outputted++;
             array_push($eaterieswithdistances,$temp->data['OrderId']);
         }
