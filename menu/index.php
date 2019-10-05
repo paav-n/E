@@ -126,15 +126,6 @@ $w=mysqli_query($connect,$results);
                 </div><!-- food-menu -->
 
             <?php } ?>
-            <div class="col-md-6 food-menu test">
-
-                <div class="sided-90x mb-30 ">
-                    <div class="s-right">
-                        <h5 class="mb-10"><b><?php echo "Test";?></b><b class="color-primary float-right"><?php echo "test";?></b></h5>
-                        <p class="pr-70"><?php echo "test";?></p>
-                    </div><!--s-right-->
-                </div><!-- sided-90x -->
-            </div>
         </div><!-- row -->
     </div><!-- container -->
 </section>
