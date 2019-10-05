@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Manhattan Bagel</title>
+    <title>Menu</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -73,7 +73,9 @@ if (mysqli_connect_errno()) {
     die('<p>Failed to connect to MySQL: '.mysqli_error().'</p>');
 }
 mysqli_select_db($connect, $database);
-$results="SELECT * from Manhattan_Bagel";
+
+$venue = $_GET["name"];
+$results="SELECT * from $venue";
 $w=mysqli_query($connect,$results);
 
 ?>
@@ -119,7 +121,7 @@ $w=mysqli_query($connect,$results);
             <h2>Menu</h2>
         </div>
         <?php
-        $results2="SELECT * from Manhattan_Bagel";
+        $results2="SELECT * from $venue";
         $t=mysqli_query($connect,$results2);
         $categories=array();
         while($row = $t->fetch_array(MYSQLI_ASSOC)) {
@@ -149,7 +151,7 @@ $w=mysqli_query($connect,$results);
         </div><!--row-->
 
         <div class="row">
-            <?php $results3="SELECT * from Manhattan_Bagel";
+            <?php $results3="SELECT * from $venue";
             $s=mysqli_query($connect,$results3);
             while($row = $s->fetch_array(MYSQLI_ASSOC)) {
                 ?>

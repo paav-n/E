@@ -322,7 +322,7 @@
                                         </div>
                                         <div class="room-price">
                                             <br>
-                                            <a href="../orderForm/index.php?name=<?php echo $value->data['name']?>" class="site-btn btn-line">View Menu</a>
+                                            <a href="../menu/index.php?name=<?php echo $value->data['name']?>" class="site-btn btn-line">View Menu</a>
 
                                         </div>
                                     </div>
