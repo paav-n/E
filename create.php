@@ -32,15 +32,16 @@ $venue = $_POST["venue"];
 $therole = $_POST["role"];
 $epass= password_hash($password, PASSWORD_BCRYPT);
 
-if ($therole == "venue"){$s="INSERT INTO users (username, roles, pass, email, business_name) values ('$user','$therole' ,'$epass', '$email', '$venue')";}
-else{$s="INSERT INTO users (username, roles, pass, email, make, model, cyear) values ('$user','$therole' ,'$epass', '$email', '$venue', '$make', '$model', '$year')";}
+if ($therole == "venue"){$s="INSERT INTO users (username, roles, pass, email, business_name) values ('$user','$therole' ,'$epass', '$email', '$venue')";
+}
+else{$s="INSERT INTO users (username, roles, pass, email, make, model, cyear) values ('$user','$therole' ,'$epass', '$email', '$make', '$model', '$year')";}
 
 $t=mysqli_query($connect,$s);
-if (is_null($therole)){
-    echo"Account Created<br>";
-    header('Location: http://enthalpylogistics.com/Login');
-    die();
-}
+
+echo"Account Created<br>";
+header('Location: http://enthalpylogistics.com/Login');
+die();
+
 
 mysqli_free_result($t);
 mysqli_free_result($w);
