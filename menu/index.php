@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="fonts/beyond_the_mountains-webfont.css" type="text/css"/>
 
     <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Bungee&display=swap" rel="stylesheet">
     <link href="plugin-frameworks/bootstrap.min.css" rel="stylesheet">
     <link href="plugin-frameworks/swiper.css" rel="stylesheet">
     <link href="fonts/ionicons.css" rel="stylesheet">
@@ -69,7 +70,7 @@ $w=mysqli_query($connect,$results);
 <section>
     <div class="container">
         <div class="heading">
-            <img class="heading-img" src="images/heading_logo.png" alt="">
+            <br><br>
             <h2>Menu</h2>
         </div>
         <?php
