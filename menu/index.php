@@ -44,21 +44,6 @@
 
 </header>
 
-
-<section class="bg-1 h-900x main-slider pos-relative">
-    <div class="triangle-up pos-bottom"></div>
-    <div class="container h-100">
-        <div class="dplay-tbl">
-            <div class="dplay-tbl-cell center-text color-white">
-
-                <h5><b>BEST IN TOWN</b></h5>
-                <h1 class="mt-30 mb-15">Pizza & Pasta</h1>
-                <h5><a href="#" class="btn-primaryc plr-25"><b>SEE TODAYS MENU</b></a></h5>
-            </div><!-- dplay-tbl-cell -->
-        </div><!-- dplay-tbl -->
-    </div><!-- container -->
-</section>
-
 <?php
 session_start();
 ?>
@@ -80,40 +65,6 @@ $results="SELECT * from $venue";
 $w=mysqli_query($connect,$results);
 
 ?>
-
-<section class="story-area bg-seller color-white pos-relative">
-
-
-    <div class="pos-bottom triangle-up"></div>
-    <div class="pos-top triangle-bottom"></div>
-    <div class="container">
-        <div class="heading">
-            <img class="heading-img" src="images/heading_logo.png" alt="">
-            <h2>Best Sellers</h2>
-        </div>
-
-        <div class="row">
-            <?php
-            for( $i=0;$i<8;$i++){
-                $row = $w->fetch_array(MYSQLI_ASSOC);
-                ?>
-                <div class="col-lg-3 col-md-4  col-sm-6 ">
-                    <div class="center-text mb-30">
-                        <h5 class="mt-20"><?php echo $row['ITEM_NAME'];?></h5>
-                        <h4 class="mt-5"><b><?php echo $row['ITEM_PRICE'];?></b></h4>
-                        <h6 class="mt-20"><a href="#" class="btn-brdr-primary plr-25"><b>Add To Cart</b></a></h6>
-                    </div><!--text-center-->
-                </div><!-- col-md-3 -->
-
-                <?php
-            }
-            ?>
-        </div><!-- row -->
-
-        <h6 class="center-text mt-40 mt-sm-20 mb-30"><a href="#" class="btn-primaryc plr-25"><b>SEE TODAYS MENU</b></a></h6>
-    </div><!-- container -->
-</section>
-
 
 <section>
     <div class="container">
