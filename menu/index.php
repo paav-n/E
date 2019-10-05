@@ -116,7 +116,7 @@ $w=mysqli_query($connect,$results);
                             <p class="pr-70"><?php echo $row['ITEM_DESCRIPTION'];?></p>
                         </div><!--s-right-->
                     </div><!-- sided-90x -->
-                    <button class="checkout" onclick="push<?php echo $row[ITEM_ID];?>()">Add To Cart</button>
+                    <button onclick="push<?php echo $row[ITEM_ID];?>()">Add To Cart</button>
                     <script type="text/javascript">
                         function push<?php echo $row[ITEM_ID];?>(){
                             items.push(<?php echo $row[ITEM_ID];?>);
