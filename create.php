@@ -25,9 +25,16 @@ mysqli_select_db($connect, $database);
 $user = $_POST["username"];
 $password = $_POST["pass"];
 $email = $_POST["email"];
-$therole = null;
+$make = $_POST["make"];
+$model = $_POST["model"];
+$year = $_POST["year"];
+$venue = $_POST["venue"];
+$therole = $_POST["role"];
 $epass= password_hash($password, PASSWORD_BCRYPT);
-$s="INSERT INTO users (username, roles, pass, email) values ('$user','res' ,'$epass', '$email')";
+
+if ($therole == "venue"){$s="INSERT INTO users (username, roles, pass, email, business_name) values ('$user','res' ,'$epass', '$email', '$venue')";}
+else{$s="INSERT INTO users (username, roles, pass, email, make, model, cyear) values ('$user','res' ,'$epass', '$email', '$venue', '$make', '$model', '$year')";}
+
 $t=mysqli_query($connect,$s);
 if (is_null($therole)){
     echo"Account Created<br>";
