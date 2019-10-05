@@ -32,8 +32,8 @@ $venue = $_POST["venue"];
 $therole = $_POST["role"];
 $epass= password_hash($password, PASSWORD_BCRYPT);
 
-if ($therole == "venue"){$s="INSERT INTO users (username, roles, pass, email, business_name) values ('$user','res' ,'$epass', '$email', '$venue')";}
-else{$s="INSERT INTO users (username, roles, pass, email, make, model, cyear) values ('$user','res' ,'$epass', '$email', '$venue', '$make', '$model', '$year')";}
+if ($therole == "venue"){$s="INSERT INTO users (username, roles, pass, email, business_name) values ('$user','$therole' ,'$epass', '$email', '$venue')";}
+else{$s="INSERT INTO users (username, roles, pass, email, make, model, cyear) values ('$user','$therole' ,'$epass', '$email', '$venue', '$make', '$model', '$year')";}
 
 $t=mysqli_query($connect,$s);
 if (is_null($therole)){
