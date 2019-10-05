@@ -74,7 +74,8 @@ if (mysqli_connect_errno()) {
 }
 mysqli_select_db($connect, $database);
 
-$venue = $_GET["name"];
+$it = $_GET["name"];
+$venue = str_replace(" ", "_", $it);
 $results="SELECT * from $venue";
 $w=mysqli_query($connect,$results);
 
